@@ -1,5 +1,5 @@
 <?php
-namespace Clicalmani\Flesco\Console\Commands\Makes;
+namespace Clicalmani\Console\Commands\Makes;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -9,13 +9,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Misc\Tools;
 
+/**
+ * Create a new middleware service
+ * 
+ * @package Clicalmani\Console
+ * @author clicalmani
+ */
 #[AsCommand(
     name: 'make:middleware',
-    description: 'The make command is the main command for launching verious tasks, such as creation of models, controllers, servicies, events and migration.',
+    description: 'Create a new middleware service.',
     hidden: false
 )]
 class MakeMiddlewareCommand extends Command
 {
+    private $middlewares_path;
+
     public function __construct(private $root_path)
     {
         $this->middlewares_path = $this->root_path . '/app/http/middlewares';
@@ -31,10 +39,12 @@ class MakeMiddlewareCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            Tools::eval(file_get_contents( __DIR__ . "/Samples/Middleware.sample"), [
-                'middleware' => $middleware,
-                'handler'    => $handler
-            ])
+            ltrim( 
+                Tools::eval(file_get_contents( __DIR__ . "/Samples/Middleware.sample"), [
+                    'middleware' => $middleware,
+                    'handler'    => $handler
+                ])
+            )
         );
 
         if ($success) {

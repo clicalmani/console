@@ -1,5 +1,5 @@
 <?php
-namespace Clicalmani\Flesco\Console\Commands\Makes;
+namespace Clicalmani\Console\Commands\Makes;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -9,13 +9,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Misc\Tools;
 
+/**
+ * Create a new controller
+ * 
+ * @package Clicalmani\Console
+ * @author clicalmani
+ */
 #[AsCommand(
     name: 'make:controller',
-    description: 'The make command is the main command for launching verious tasks, such as creation of models, controllers, servicies, events and migration.',
+    description: 'Create a new controller in the controllers directory.',
     hidden: false
 )]
 class MakeControllerCommand extends Command
 {
+    private $controllers_path;
+
     public function __construct(private $root_path)
     {
         $this->controllers_path = $this->root_path . '/app/http/controllers';
@@ -44,7 +52,6 @@ class MakeControllerCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            "<?php\n" . 
             ltrim( Tools::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
                 'controller'   => $controller,
                 'resource'     => $resource,
@@ -71,8 +78,8 @@ class MakeControllerCommand extends Command
         $this->setHelp('Create new controller');
         $this->setDefinition([
             new InputArgument('name', InputArgument::REQUIRED, 'Controller name'),
-            new InputOption('api', 'api', InputOption::VALUE_NONE, 'Api Controller'),
-            new InputOption('resource', 'resource', InputOption::VALUE_REQUIRED, 'Resource Controller')
+            new InputOption('api', null, InputOption::VALUE_NONE, 'Api Controller'),
+            new InputOption('resource', null, InputOption::VALUE_REQUIRED, 'Resource Controller')
         ]);
     }
 }

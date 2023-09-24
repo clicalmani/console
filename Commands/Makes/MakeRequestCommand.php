@@ -1,17 +1,22 @@
 <?php
-namespace Clicalmani\Flesco\Console\Commands\Makes;
+namespace Clicalmani\Console\Commands\Makes;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Misc\Tools;
 
+/**
+ * Create a new request class.
+ * 
+ * @package Clicalmani\Console
+ * @author clicalmani
+ */
 #[AsCommand(
     name: 'make:request',
-    description: 'The make command is the main command for launching verious tasks, such as creation of models, controllers, servicies, events and migration.',
+    description: 'Create a new request class.',
     hidden: false
 )]
 class MakeRequestCommand extends Command
@@ -31,7 +36,6 @@ class MakeRequestCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            "<?php\n" . 
             ltrim( Tools::eval(file_get_contents( __DIR__ . "/Samples/Request.sample"), [
                 'request' => $request
             ]) )

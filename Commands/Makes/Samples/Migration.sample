@@ -7,42 +7,28 @@ return new class extends Factory
 {
     /**
      * |------------------------------------------------------------------
-     * |                  ***** Create Method *****
+     * |                  ***** In Method *****
      * |------------------------------------------------------------------
      * 
      * Run the migration
      * 
      * @return void
      */
-    function create()
+    function in()
     {
         // Do Something
     }
 
     /**
      * |------------------------------------------------------------------
-     * |                  ***** Drop Method *****
+     * |                  ***** Out Method *****
      * |------------------------------------------------------------------
      * 
      * Reverse the migration
      * 
      * @return void
      */
-    function drop()
-    {
-        // Do Something
-    }
-
-    /**
-     * |------------------------------------------------------------------
-     * |                  ***** Modify Method *****
-     * |------------------------------------------------------------------
-     * 
-     * Update the migration
-     * 
-     * @return void
-     */
-    function modify()
+    function out()
     {
         // Do Something
     }

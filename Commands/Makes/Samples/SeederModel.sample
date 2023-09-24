@@ -1,0 +1,23 @@
+<?php 
+namespace Database\Seeders;
+
+use Clicalmani\Flesco\Database\Seeders\Seeder;
+use Clicalmani\Flesco\Database\Seeders\DisableEventsTrigger;
+use App\Models\\$model;
+
+class $seeder extends Seeder 
+{
+    use DisableEventsTrigger;
+    
+    /**
+     * Run the seeder 
+     *
+     * @return void
+     */
+    public function run() : void
+    {
+        $model::seed()
+            ->count(1)
+            ->start();
+    }
+}

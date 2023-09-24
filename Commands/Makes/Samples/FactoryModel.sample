@@ -1,0 +1,27 @@
+<?php 
+namespace Database\Factories;
+
+use Clicalmani\Flesco\Database\Factory\Factory;
+use App\Models\\$model;
+
+class $factory extends Factory 
+{
+    /**
+     * Factory model 
+     *
+     * @var string $model Model name 
+     */
+    protected \$model = $model::class;
+
+    /**
+     * Factory definition 
+     *
+     * @return array
+     */
+    public function definition() : array
+    {
+        return [
+            # Definition
+        ];
+    }
+}

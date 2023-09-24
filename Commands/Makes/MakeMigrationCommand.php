@@ -1,5 +1,5 @@
 <?php
-namespace Clicalmani\Flesco\Console\Commands\Makes;
+namespace Clicalmani\Console\Commands\Makes;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -8,16 +8,20 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Make migration command
+ * 
+ * @package Clicalmani\Console
+ * @author clicalmani
+ */
 #[AsCommand(
     name: 'make:migration',
-    description: 'The make command is the main command for launching verious tasks, such as creation of models, controllers, servicies, events and migration.',
+    description: 'Create a database migration.',
     hidden: false
 )]
 class MakeMigrationCommand extends Command
 {
-    protected static $defaultDescription = 'The make command is the command main for lunching verious tasks, such as creation of models, controllers, servicies, events and migration. Enter --help for more informations.';
-
-    private $filename;
+    private $database_path, $filename;
 
     public function __construct(private $root_path)
     {
@@ -45,7 +49,7 @@ class MakeMigrationCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Database migration command. It allows tables creation, manipulation and deletion');
+        $this->setHelp('A file will be created in database migrations path with the given name.');
         $this->addArgument('filename', InputArgument::REQUIRED, 'The file name for migration');
     }
 }

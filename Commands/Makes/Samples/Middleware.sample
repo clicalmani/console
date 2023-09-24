@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Middlewares;
 
 use Clicalmani\Flesco\Http\Middlewares\Middleware;

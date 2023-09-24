@@ -10,17 +10,17 @@ use Clicalmani\Flesco\Misc\Tools;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Create new database seeder
+ * Create new database seeder factory
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:seeder',
-    description: 'Create a new database seeder.',
+    name: 'make:factory',
+    description: 'Create a new database seeder factory.',
     hidden: false
 )]
-class MakeSeederCommand extends Command
+class MakeFactoryCommand extends Command
 {
     private $database_path;
     
@@ -32,27 +32,26 @@ class MakeSeederCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $seeder  = $input->getArgument('name');
+        $factory  = $input->getArgument('name');
         
-        # Create seeders directory if not exists.
-        if ( !file_exists( $this->database_path . '/seeders' ) ) {
-            mkdir( $this->database_path . '/seeders' );
+        # Create factories directory if not exists.
+        if ( !file_exists( $this->database_path . '/factories' ) ) {
+            mkdir( $this->database_path . '/factories' );
         }
 
-        $filename = $this->database_path . '/seeders/' . $seeder . '.php';
-        $sample   = 'Seeder.sample';
+        $filename = $this->database_path . '/factories/' . $factory . '.php';
+        $sample   = 'Factory.sample';
         $model    = null;
 
-        if ( $factory = $input->getOption('factory') ) {
-            $model = substr($factory, 0, strlen($factory) - 7);
-            $sample = 'SeederModel.sample';
+        if ( $model = $input->getOption('model') ) {
+            $sample = 'FactoryModel.sample';
         }
 
         $success = file_put_contents(
             $filename, 
             ltrim( Tools::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
-                'seeder' => $seeder,
-                'model'  => $model
+                'factory' => $factory,
+                'model'   => $model
             ]) )
         );
 
@@ -70,10 +69,10 @@ class MakeSeederCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create new database seeder');
+        $this->setHelp('Create new database factory');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Seeder class name'),
-            new InputOption('factory', null, InputOption::VALUE_REQUIRED, 'Seeder factory')
+            new InputArgument('name', InputArgument::REQUIRED, 'Factory name'),
+            new InputOption('model', null, InputOption::VALUE_REQUIRED, 'Factory model')
         ]);
     }
 }

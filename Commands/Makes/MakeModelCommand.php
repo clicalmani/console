@@ -1,5 +1,5 @@
 <?php
-namespace Clicalmani\Flesco\Console\Commands\Makes;
+namespace Clicalmani\Console\Commands\Makes;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -9,13 +9,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Misc\Tools;
 
+/**
+ * Create a model class command
+ * 
+ * @package Clicalmani\Console
+ * @author clicalmani
+ */
 #[AsCommand(
     name: 'make:model',
-    description: 'The make command is the main command for launching verious tasks, such as creation of models, controllers, servicies, events and migration.',
+    description: 'Create a model class.',
     hidden: false
 )]
 class MakeModelCommand extends Command
 {
+    private $models_path;
+
     public function __construct(private $root_path)
     {
         $this->models_path = $this->root_path . '/app/models';
@@ -36,7 +44,6 @@ class MakeModelCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            "<?php\n" . 
             ltrim( Tools::eval(file_get_contents( __DIR__ . '/Samples/Model.sample'), [
                 'model_name'   => $model_name,
                 'table_name'   => $table_name,
