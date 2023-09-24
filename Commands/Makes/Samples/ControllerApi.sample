@@ -1,0 +1,62 @@
+namespace App\Http\Controllers;
+
+use Clicalmani\Flesco\Http\Controllers\RequestController as Controller;
+use Clicalmani\Flesco\Http\Requests\Request;
+use Clicalmani\Flesco\Http\Response\Response;
+
+class $controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Clicalmani\Flesco\Http\Response\JsonResponse
+     */
+    public function index()
+    {
+        // Your code
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Clicalmani\Flesco\Http\Requests\Request  \$request
+     * @return \Clicalmani\Flesco\Http\Response\JsonResponse
+     */
+    public function store(Request \$request)
+    {
+        // Your code
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Clicalmani\Flesco\Http\Requests\Request  \$request
+     * @return \Clicalmani\Flesco\Http\Response\JsonResponse
+     */
+    public function show(Request \$request)
+    {
+        // Your code
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Clicalmani\Flesco\Http\Requests\Request  \$request
+     * @return \Clicalmani\Flesco\Http\Response\JsonResponse
+     */
+    public function update(Request \$request)
+    {
+        // Your code
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Clicalmani\Flesco\Http\Requests\Request  \$request
+     * @return \Clicalmani\Flesco\Http\Response\JsonResponse
+     */
+    public function destroy(Request \$request)
+    {
+        // Your code
+    }
+}

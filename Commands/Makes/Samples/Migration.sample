@@ -1,0 +1,49 @@
+<?php
+use Clicalmani\Flesco\Database\Factory\Factory;
+use Clicalmani\Flesco\Database\Factory\Maker;
+use Clicalmani\Flesco\Database\Factory\Schema;
+
+return new class extends Factory 
+{
+    /**
+     * |------------------------------------------------------------------
+     * |                  ***** Create Method *****
+     * |------------------------------------------------------------------
+     * 
+     * Run the migration
+     * 
+     * @return void
+     */
+    function create()
+    {
+        // Do Something
+    }
+
+    /**
+     * |------------------------------------------------------------------
+     * |                  ***** Drop Method *****
+     * |------------------------------------------------------------------
+     * 
+     * Reverse the migration
+     * 
+     * @return void
+     */
+    function drop()
+    {
+        // Do Something
+    }
+
+    /**
+     * |------------------------------------------------------------------
+     * |                  ***** Modify Method *****
+     * |------------------------------------------------------------------
+     * 
+     * Update the migration
+     * 
+     * @return void
+     */
+    function modify()
+    {
+        // Do Something
+    }
+};

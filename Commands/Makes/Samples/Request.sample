@@ -1,0 +1,37 @@
+namespace App\Http\Requests;
+
+use Clicalmani\Flesco\Http\Requests\Request;
+
+class $request extends Request
+{
+    /**
+     * Authorize request
+     * 
+     * @return bool true if yes, false otherwise
+     */
+    function authorize() : bool {
+        return true; // Request is authorized
+    }
+
+    /**
+     * Prepare request for validation
+     *
+     * @return void
+     */
+    function prepareForValidation() : void
+    {
+        // Do Something
+    }
+
+    /**
+     * Define request signatures 
+     *
+     * @return void
+     */
+    function signatures() : void
+    {
+        \$this->merge([
+            // Signatures
+        ]);
+    }
+}

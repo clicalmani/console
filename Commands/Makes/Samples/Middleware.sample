@@ -1,0 +1,28 @@
+<?php
+namespace App\Http\Middlewares;
+
+use Clicalmani\Flesco\Http\Middlewares\Middleware;
+use Clicalmani\Flesco\Http\Requests\Request;
+
+class $middleware extends Middleware 
+{
+    /**
+     * Handle middleware
+     * 
+     * @return string Handler path
+     */
+    function handler()
+    {
+        return routes_path( '/$handler.php' );
+    }
+
+    /**
+     * Authorize middleware
+     *
+     * @return bool true authorize, false deny 
+     */
+    function authorize(Request \$request)
+    {
+        return true;        // Authorized
+    }
+}

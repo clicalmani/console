@@ -1,0 +1,14 @@
+namespace App\Models;
+
+use Clicalmani\Flesco\Models\Model;
+
+class $model_name extends Model
+{
+    protected \$table      = "$table_name";
+    protected \$primaryKey = $primary_keys;
+
+    function __construct( \$id = null )
+    {
+        parent::__construct( \$id );
+    }
+}

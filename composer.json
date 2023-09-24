@@ -1,0 +1,22 @@
+{
+    "name": "clicalmani/console",
+    "description": "Tonka command line tools.",
+    "type": "library",
+    "require": {
+        "php": ">=8.0"
+    },
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Clicalmani\\Console\\": "/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdoul-Madjid",
+            "email": "honorable85@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
