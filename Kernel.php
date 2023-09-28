@@ -14,5 +14,7 @@ class Kernel
       \Clicalmani\Console\Commands\Makes\MakeSeederCommand::class,
       \Clicalmani\Console\Commands\Local\DBSeedCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeFactoryCommand::class,
+      \Clicalmani\Console\Commands\Makes\Test\MakeTestControllerCommand::class,
+      \Clicalmani\Console\Commands\Local\Test\TestControllerCommand::class,
    ];
 }

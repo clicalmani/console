@@ -1,7 +1,7 @@
 <?php
-use Clicalmani\Flesco\Database\Factory\Factory;
-use Clicalmani\Flesco\Database\Factory\Maker;
-use Clicalmani\Flesco\Database\Factory\Schema;
+use Clicalmani\Database\Factory\Factory;
+use Clicalmani\Database\Factory\Maker;
+use Clicalmani\Database\Factory\Schema;
 
 return new class extends Factory 
 {

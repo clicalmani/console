@@ -1,0 +1,16 @@
+<?php 
+namespace App\Test\Controllers;
+
+use Clicalmani\Flesco\TestUnits\Controllers\TestController;
+use App\Http\Controllers\\$class;
+
+class $test extends TestController 
+{ 
+    /**
+     * Controller class
+     *
+     * @var string Class name 
+     */
+    protected \$controller = $controller::class;
+    $methods
+}

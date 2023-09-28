@@ -8,6 +8,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
+    define('CONSOLE_MODE_ACTIVE', true);
+}
+
 #[AsCommand(
     name: 'migrate:fresh',
     description: 'Database migration command',

@@ -1,7 +1,7 @@
 <?php 
 namespace Database\Factories;
 
-use Clicalmani\Flesco\Database\Factory\Factory;
+use Clicalmani\Database\Factory\Factory;
 use App\Models\\$model;
 
 class $factory extends Factory 

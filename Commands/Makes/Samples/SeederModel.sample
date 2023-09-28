@@ -1,8 +1,8 @@
 <?php 
 namespace Database\Seeders;
 
-use Clicalmani\Flesco\Database\Seeders\Seeder;
-use Clicalmani\Flesco\Database\Seeders\DisableEventsTrigger;
+use Clicalmani\Database\Seeders\Seeder;
+use Clicalmani\Database\Seeders\DisableEventsTrigger;
 use App\Models\\$model;
 
 class $seeder extends Seeder 
