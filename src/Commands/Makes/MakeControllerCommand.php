@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Misc\Tools;
+use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
  * Create a new controller
@@ -52,7 +52,7 @@ class MakeControllerCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            ltrim( Tools::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
+            ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
                 'controller'   => $controller,
                 'resource'     => $resource,
                 'class'        => $class,

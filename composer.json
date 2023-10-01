@@ -8,7 +8,7 @@
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "Clicalmani\\Console\\": "/"
+            "Clicalmani\\Console\\": "src/"
         }
     },
     "authors": [

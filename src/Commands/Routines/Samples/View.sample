@@ -1,0 +1,14 @@
+<?php
+/**
+ * Please do not modify the passed argument, because it will be read internally to set database tables prefix.
+ * Do remember your code will be executed in a sandbox environment. The internal container will not interact with 
+ * your code. Keep it clean !
+ *
+ * The placeholder table your view can be created through migration command.
+ */
+return function(string \$table_prefix = '%DB_TABLE_PREFIX%') : string {
+    return <<<SQL
+        CREATE  OR REPLACE VIEW `$name` AS 
+        # Render your view
+    SQL;
+};

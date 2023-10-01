@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Misc\Tools;
+use Clicalmani\Flesco\Sandbox\Sandbox;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -49,7 +49,7 @@ class MakeFactoryCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            ltrim( Tools::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
+            ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
                 'factory' => $factory,
                 'model'   => $model
             ]) )

@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Misc\Tools;
+use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
  * Create a new test controller
@@ -16,7 +16,7 @@ use Clicalmani\Flesco\Misc\Tools;
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:test_controller',
+    name: 'make:test',
     description: 'Create a new test controller in the controllers directory.',
     hidden: false
 )]
@@ -43,7 +43,7 @@ class MakeTestControllerCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $controller   = $input->getArgument('name');
+        $controller   = $input->getArgument('controller');
         $test_controller = substr($controller, strripos($controller, '\\')) . 'Test';
 
         $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Controllers\RequestController::class);
@@ -62,12 +62,6 @@ class MakeTestControllerCommand extends Command
             if ( !in_array($method->name, $inherited) ) $args[] = $method->name;
         }
         
-        $sample = 'Controller.sample';
-
-        if ($auth = $input->getOption('auth')) {
-            $sample = 'ControllerAuth.sample';
-        }
-
         $methods = function($args) {
             $ret = '';
             foreach ($args as $index => $method) {
@@ -110,7 +104,7 @@ class MakeTestControllerCommand extends Command
 
         $success = file_put_contents(
             $this->controllers_path . "/$test_controller.php", 
-            ltrim( Tools::eval(file_get_contents( dirname( __DIR__) . "/Samples/Test/$sample"), [
+            ltrim( Sandbox::eval(file_get_contents( dirname( __DIR__) . "/Samples/Test/Controller.sample"), [
                 'test'       => $test_controller,
                 'controller' => substr($controller, strripos($controller, '\\')),
                 'class'      => $controller,
@@ -133,9 +127,6 @@ class MakeTestControllerCommand extends Command
     protected function configure() : void
     {
         $this->setHelp('Create new test controller');
-        $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Controller to test'),
-            new InputOption('auth', null, InputOption::VALUE_NONE, 'Enable user authentication')
-        ]);
+        $this->addArgument('controller', InputArgument::REQUIRED, 'Controller to test');
     }
 }

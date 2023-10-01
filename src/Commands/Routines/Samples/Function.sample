@@ -1,0 +1,15 @@
+<?php
+/**
+ * Please do not modify the passed argument, because it will be read internally to set database tables prefix.
+ * Do remember your code will be executed in a sandbox environment. The internal container will not interact with 
+ * your code. Keep it clean !
+ */
+return function(string \$table_prefix = '%DB_TABLE_PREFIX%') : string {
+    return <<<SQL
+        CREATE FUNCTION `$name`(/** Parameters **/) RETURNS /** Return type **/
+        READS SQL DATA
+        BEGIN
+            # Do something
+        END;
+    SQL;
+};

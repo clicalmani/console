@@ -4,36 +4,42 @@ namespace Clicalmani\Console\Commands\Makes;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
- * Make migration command
+ * Create a new request class.
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:migration',
-    description: 'Create a database migration.',
+    name: 'make:request',
+    description: 'Create a new request class.',
     hidden: false
 )]
-class MakeMigrationCommand extends Command
+class MakeRequestCommand extends Command
 {
-    private $database_path, $filename;
-
+    private $requests_path;
+    
     public function __construct(private $root_path)
     {
-        $this->database_path = $this->root_path . '/database';
+        $this->requests_path = $this->root_path . '/app/http/requests';
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $this->filename = $this->database_path . '/migrations/' . date('Y_m_d') . '_' . time() . '_' . $input->getArgument('filename') . '.php';
+        $request  = $input->getArgument('name');
+        $filename = $this->requests_path . '/' . $request . '.php';
 
-        $success = file_put_contents($this->filename, file_get_contents( __DIR__ . '/Samples/Migration.sample'));
+        $success = file_put_contents(
+            $filename, 
+            ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Request.sample"), [
+                'request' => $request
+            ]) )
+        );
 
         if ($success) {
 
@@ -49,7 +55,9 @@ class MakeMigrationCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('A file will be created in database migrations path with the given name.');
-        $this->addArgument('filename', InputArgument::REQUIRED, 'The file name for migration');
+        $this->setHelp('Create new request');
+        $this->setDefinition([
+            new InputArgument('name', InputArgument::REQUIRED, 'Request name')
+        ]);
     }
 }

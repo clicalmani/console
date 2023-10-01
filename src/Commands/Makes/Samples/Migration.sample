@@ -14,9 +14,11 @@ return new class extends Factory
      * 
      * @return void
      */
-    function in()
+    public function in()
     {
-        // Do Something
+        Schema::create("$table", function(Maker \$table) {
+            // Table definition
+        });
     }
 
     /**
@@ -28,8 +30,8 @@ return new class extends Factory
      * 
      * @return void
      */
-    function out()
+    public function out()
     {
-        // Do Something
+        Schema::dropIfExists("$table");
     }
 };

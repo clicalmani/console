@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Misc\Tools;
+use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
  * Create a model class command
@@ -43,7 +43,7 @@ class MakeModelCommand extends Command
 
         $success = file_put_contents(
             $filename, 
-            ltrim( Tools::eval(file_get_contents( __DIR__ . '/Samples/Model.sample'), [
+            ltrim( Sandbox::eval(file_get_contents( __DIR__ . '/Samples/Model.sample'), [
                 'model_name'   => $model_name,
                 'table_name'   => $table_name,
                 'primary_keys' => $primary_keys

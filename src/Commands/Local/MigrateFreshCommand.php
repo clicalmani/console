@@ -47,36 +47,16 @@ class MigrateFreshCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $migrations_dir = new \RecursiveDirectoryIterator($this->database_path . '/migrations');
+        $db_seed = new ArrayInput([
+            'command' => 'db:clear'
+        ]);
 
-        try {
-            $output->writeln('Cleaning the database ...');
-
-            foreach (new \RecursiveIteratorIterator($migrations_dir) as $file) { 
-                $pathname = $file->getPathname();
-
-                if($file->isFile()) {
-                    $filename = $file->getFileName(); 
-                    
-                    if(is_readable($pathname)) {
-                        $migration = require $pathname;
-
-                        if ( method_exists($migration, 'out') ) {
-                            $output->writeln('Droping ' . $filename);
-                            $migration->out();
-                            $output->writeln('success');
-                        }
-                    }
-                }
-            }
-        } catch (\PDOException $e) {
-            $output->writeln('Failure');
-            $output->writeln($e->getMessage());
-
+        if (0 !== $this->getApplication()->doRun($db_seed, $output)) {
             return Command::FAILURE;
         }
 
         try {
+            $migrations_dir = new \RecursiveDirectoryIterator($this->database_path . '/migrations');
             $output->writeln('Migrating the database ...');
 
             foreach (new \RecursiveIteratorIterator($migrations_dir) as $file) { 
@@ -103,12 +83,40 @@ class MigrateFreshCommand extends Command
             return Command::FAILURE;
         }
 
-        if ($input->hasOption('seed')) {
+        if (false !== $input->getOption('seed')) {
             $db_seed = new ArrayInput([
                 'command' => 'db:seed'
             ]);
 
-            return $this->getApplication()->doRun($db_seed, $output);
+            if (0 !== $this->getApplication()->doRun($db_seed, $output)) {
+                return Command::FAILURE;
+            }
+        }
+
+        if (false !== $input->getOption('routines')) {
+            $db_seed = new ArrayInput([
+                'command' => 'migrate:functions'
+            ]);
+
+            if (0 !== $this->getApplication()->doRun($db_seed, $output)) {
+                return Command::FAILURE;
+            }
+
+            $db_seed = new ArrayInput([
+                'command' => 'migrate:procedures'
+            ]);
+
+            if (0 !== $this->getApplication()->doRun($db_seed, $output)) {
+                return Command::FAILURE;
+            }
+
+            $db_seed = new ArrayInput([
+                'command' => 'migrate:views'
+            ]);
+
+            if (0 !== $this->getApplication()->doRun($db_seed, $output)) {
+                return Command::FAILURE;
+            }
         }
 
         return Command::SUCCESS;
@@ -118,7 +126,8 @@ class MigrateFreshCommand extends Command
     {
         $this->setHelp('Run a fresh database migration');
         $this->setDefinition([
-            new InputOption('seed', null, InputOption::VALUE_OPTIONAL, 'Run seeds after migration')
+            new InputOption('seed', null, InputOption::VALUE_NONE, 'Run seeds after migration'),
+            new InputOption('routines', null, InputOption::VALUE_NONE, 'Migrate routines')
         ]);
     }
 }

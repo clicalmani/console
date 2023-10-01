@@ -18,6 +18,6 @@ class $seeder extends Seeder
     {
         $model::seed()
             ->count(1)
-            ->start();
+            ->make();
     }
 }
