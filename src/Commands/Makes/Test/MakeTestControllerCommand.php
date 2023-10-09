@@ -44,7 +44,7 @@ class MakeTestControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $controller   = $input->getArgument('controller');
-        $test_controller = substr($controller, strripos($controller, '\\')) . 'Test';
+        $test_controller = substr($controller, strripos($controller, '\\') + 1) . 'Test';
 
         $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Controllers\RequestController::class);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
@@ -106,7 +106,7 @@ class MakeTestControllerCommand extends Command
             $this->controllers_path . "/$test_controller.php", 
             ltrim( Sandbox::eval(file_get_contents( dirname( __DIR__) . "/Samples/Test/Controller.sample"), [
                 'test'       => $test_controller,
-                'controller' => substr($controller, strripos($controller, '\\')),
+                'controller' => substr($controller, strripos($controller, '\\') + 1),
                 'class'      => $controller,
                 'methods'    => $methods
             ]) )

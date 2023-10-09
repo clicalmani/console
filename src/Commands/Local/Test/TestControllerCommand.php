@@ -34,7 +34,7 @@ class TestControllerCommand extends Command
     {
         if ($controller = $input->getOption('controller')) {
             try {
-                require $this->controllers_path . "//{$controller}Test.php";
+                // require $this->controllers_path . "//{$controller}Test.php";
 
                 $class = "\\App\Test\\Controllers\\{$controller}Test";
                 $class::test();

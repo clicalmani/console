@@ -1,6 +1,7 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Flesco\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,11 +32,12 @@ class DBClearCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $migrations_dir = new \RecursiveDirectoryIterator($this->database_path . '/migrations');
+        $filter = new RecursiveFilter($migrations_dir);
 
         try {
             $output->writeln('Cleaning the database ...');
 
-            foreach (new \RecursiveIteratorIterator($migrations_dir) as $file) { 
+            foreach (new \RecursiveIteratorIterator($filter) as $file) { 
                 $pathname = $file->getPathname();
 
                 if($file->isFile()) {

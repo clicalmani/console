@@ -5,6 +5,7 @@ class Kernel
 {
    public static $kernel = [
       \Clicalmani\Console\Commands\Local\StartCommand::class,
+      \Clicalmani\Console\Commands\Local\AppKeyCommand::class,
       \Clicalmani\Console\Commands\Local\DBClearCommand::class,
       \Clicalmani\Console\Commands\Local\MigrateFreshCommand::class,
       \Clicalmani\Console\Commands\Local\MigrateRoutineFunctionsCommand::class,

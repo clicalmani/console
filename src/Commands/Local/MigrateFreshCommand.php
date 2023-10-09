@@ -1,6 +1,7 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Flesco\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -57,23 +58,15 @@ class MigrateFreshCommand extends Command
 
         try {
             $migrations_dir = new \RecursiveDirectoryIterator($this->database_path . '/migrations');
+            $filter = new RecursiveFilter($migrations_dir);
             $output->writeln('Migrating the database ...');
 
-            foreach (new \RecursiveIteratorIterator($migrations_dir) as $file) { 
-                $pathname = $file->getPathname();
-
-                if($file->isFile()) {
-                    $filename = $file->getFileName(); 
-                    
-                    if(is_readable($pathname)) {
-                        $migration = require $pathname;
-
-                        if ( method_exists($migration, 'in') ) {
-                            $output->writeln('Migrating ' . $filename);
-                            $migration->in();
-                            $output->writeln('success');
-                        }
-                    }
+            foreach ($filter->getFiles() as $filename => $pathname) {
+                $migration = require $pathname;
+                if ( method_exists($migration, 'in') ) {
+                    $output->writeln('Migrating ' . $filename);
+                    $migration->in();
+                    $output->writeln('success');
                 }
             }
         } catch (\PDOException $e) {

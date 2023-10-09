@@ -1,6 +1,7 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Flesco\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,7 +34,8 @@ class DBSeedCommand extends Command
         if ($class = $input->getOption('class')) {
             require_once $this->database_path . "/seeders/$class.php";
 
-            $seeder = new $class;
+            $classNs = "\Database\Seeders\\$class";
+            $seeder = new $classNs;
 
             $output->writeln('Running ' . $class);
 
@@ -50,29 +52,22 @@ class DBSeedCommand extends Command
 
         try {
             $seeders_dir = new \RecursiveDirectoryIterator($this->database_path . '/seeders');
+            $filter = new RecursiveFilter($seeders_dir);
 
             $output->writeln('Seeding the database');
 
-            foreach (new \RecursiveIteratorIterator($seeders_dir) as $file) { 
-                $pathname = $file->getPathname();
+            foreach ($filter->getFiles() as $filename => $pathname) {
+                if(is_readable($pathname)) {
+                    $class = substr($filename, 0, strlen($filename) - 4);
+                    $classNs = "\Database\Seeders\\$class";
+                    $seeder = new $classNs;
 
-                if($file->isFile()) {
-                    $filename = $file->getFileName();
-                    $class = substr($filename, 0, strlen($filename) - 4); 
-                    
-                    if(is_readable($pathname)) {
-                        require $this->root_path . "/database/seeders/$class.php";
+                    $output->writeln('Seeding ' . $class);
 
-                        $classNs = "\Database\Seeders\\$class";
-                        $seeder = new $classNs;
-
-                        $output->writeln('Seeding ' . $class);
-
-                        if ( $this->runSeed($seeder, $output) ) {
-                            $output->writeln('success');
-                        } else {
-                            $output->writeln('failure');
-                        }
+                    if ( $this->runSeed($seeder, $output) ) {
+                        $output->writeln('success');
+                    } else {
+                        $output->writeln('failure');
                     }
                 }
             }
