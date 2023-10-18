@@ -1,10 +1,9 @@
 <?php
 namespace Clicalmani\Console\Commands\Makes\Test;
 
+use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Sandbox\Sandbox;
@@ -24,8 +23,10 @@ class MakeTestControllerCommand extends Command
 {
     private $controllers_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
+        parent::__construct($root_path);
+        
         $this->controllers_path = $this->root_path . '/app/test/controllers';
 
         if ( ! file_exists($this->controllers_path) ) {
@@ -37,15 +38,12 @@ class MakeTestControllerCommand extends Command
 
             mkdir($this->controllers_path);
         }
-
-        parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $controller   = $input->getArgument('controller');
-        $slash_pos = strripos($controller, '\\');
-        $test_controller = substr($controller, $slash_pos ? $slash_pos + 1: 0) . 'Test';
+        $test_controller = $this->getClass($controller) . 'Test';
 
         $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Controllers\RequestController::class);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
@@ -107,7 +105,7 @@ class MakeTestControllerCommand extends Command
             $this->controllers_path . "/$test_controller.php", 
             ltrim( Sandbox::eval(file_get_contents( dirname( __DIR__) . "/Samples/Test/Controller.sample"), [
                 'test'       => $test_controller,
-                'controller' => substr($controller, $slash_pos ? $slash_pos + 1: 0),
+                'controller' => $this->getClass($controller),
                 'class'      => $controller,
                 'methods'    => $methods
             ]) )

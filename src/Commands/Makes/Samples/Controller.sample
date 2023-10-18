@@ -1,5 +1,5 @@
 <?php 
-namespace App\Http\Controllers;
+namespace $namespace;
 
 use Clicalmani\Flesco\Http\Controllers\RequestController as Controller;
 use Clicalmani\Flesco\Http\Response\Response;

@@ -1,8 +1,8 @@
 <?php
 namespace Clicalmani\Console\Commands\Makes;
 
+use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -24,22 +24,27 @@ class MakeControllerCommand extends Command
 {
     private $controllers_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
+        parent::__construct($root_path);
         $this->controllers_path = $this->root_path . '/app/http/controllers';
-        parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $controller   = $input->getArgument('name');
-        $is_api       = $input->getOption('api');
-        $resource     = $input->getOption('resource');
-        $class        = "\\App\\Http\\Controllers\\$resource";
-        $model_class  = "App\\Models\\$resource";
-        $parameter    = null;
+        $name        = $input->getArgument('name');
+        $is_api      = $input->getOption('api');
+        $resource    = $input->getOption('resource');
+        $namespace   = "App\\Http\\Controllers\\" . $this->getPath($name);
+        $model_class = "App\\Models\\$resource";
+        $parameter   = null;
+        $file_path   = $this->controllers_path . '/' . $this->getPath($name);
 
-        $filename = $this->controllers_path . '/' . $controller . '.php';
+        if ( ! file_exists($file_path) ) {
+            mkdir($file_path);
+        }
+
+        $filename = $file_path . '/' . $this->getClass($name) . '.php';
 
         if ( $is_api ) $sample = 'ControllerApi.sample';
 
@@ -53,11 +58,11 @@ class MakeControllerCommand extends Command
         $success = file_put_contents(
             $filename, 
             ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
-                'controller'   => $controller,
-                'resource'     => $resource,
-                'class'        => $class,
-                'model_class'  => $model_class,
-                'parameter'    => $parameter
+                'controller'  => $this->getClass($name),
+                'resource'    => $this->getClass((string) $resource),
+                'namespace'   => $namespace,
+                'model_class' => $model_class,
+                'parameter'   => $parameter
             ]) )
         );
 
