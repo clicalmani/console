@@ -1,0 +1,27 @@
+<?php 
+namespace App\Providers;
+
+use Clicalmani\Flesco\Providers\ServiceProvider;
+
+class $class extends ServiceProvider
+{
+    public function __construct() 
+    { 
+        /**
+         * Parent constructor should be invoke to initialize the service container
+         */
+        parent::__construct(); 
+    }
+
+    /**
+     * Bootstrap
+     * 
+     * @return void
+     */
+    protected function boot(): void
+    {
+        \$this->container->inject(
+            fn() => require_once app_path('') /** Inject your helper here **/
+        );
+    }
+}

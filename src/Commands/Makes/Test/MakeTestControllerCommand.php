@@ -45,7 +45,7 @@ class MakeTestControllerCommand extends Command
         $controller   = $input->getArgument('controller');
         $test_controller = $this->getClass($controller) . 'Test';
 
-        $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Controllers\RequestController::class);
+        $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Requests\RequestController::class);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
         $inherited = [];
 

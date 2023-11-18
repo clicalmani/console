@@ -35,10 +35,10 @@ class MakeControllerCommand extends Command
         $name        = $input->getArgument('name');
         $is_api      = $input->getOption('api');
         $resource    = $input->getOption('resource');
-        $namespace   = "App\\Http\\Controllers\\" . $this->getPath($name);
+        $namespace   = "App\\Http\\Controllers" . ($this->getPath($name) ? "\\" . $this->getPath($name): '');
         $model_class = "App\\Models\\$resource";
         $parameter   = null;
-        $file_path   = $this->controllers_path . '/' . $this->getPath($name);
+        $file_path   = $this->controllers_path . ($this->getPath($name) ? '/' . $this->getPath($name): '');
 
         if ( ! file_exists($file_path) ) {
             mkdir($file_path);

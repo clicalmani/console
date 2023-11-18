@@ -1,7 +1,7 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Flesco\Http\Controllers\RequestController as Controller;
+use Clicalmani\Flesco\Http\Requests\RequestController as Controller;
 use Clicalmani\Flesco\Http\Requests\Request;
 use Clicalmani\Flesco\Http\Response\Response;
 
@@ -29,12 +29,12 @@ class $controller extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Create the specified resource.
      *
      * @param  \Clicalmani\Flesco\Http\Requests\Request  \$request
      * @return \Clicalmani\Flesco\Http\Response\JsonResponse
      */
-    public function show(Request \$request)
+    public function create(Request \$request)
     {
         // Your code
     }

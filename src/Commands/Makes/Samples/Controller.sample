@@ -1,7 +1,7 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Flesco\Http\Controllers\RequestController as Controller;
+use Clicalmani\Flesco\Http\Requests\RequestController as Controller;
 use Clicalmani\Flesco\Http\Response\Response;
 
 class $controller extends Controller

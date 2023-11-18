@@ -14,13 +14,14 @@ class $model_name extends Model
 
     /**
      * Table primary key(s)
+     * Use an array if the key is composed with more than one attributes.
      *
-     * @var string|array \$primary_keys Table primary key. Use an array if the key is composed with more than one attributes.
+     * @var string|array \$primary_keys Table primary key.
      */
     protected \$primaryKey = $primary_keys;
 
-    function __construct( \$id = null )
+    public function __construct(\$id = null)
     {
-        parent::__construct( \$id );
+        parent::__construct(\$id);
     }
 }

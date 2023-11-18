@@ -24,8 +24,6 @@ class MigrateFreshCommand extends Command
 
     public function __construct(private $root_path)
     {
-        global $dotenv;
-
         /**
          * Inject class dependencies
          */

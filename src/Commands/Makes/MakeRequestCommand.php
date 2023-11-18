@@ -32,19 +32,19 @@ class MakeRequestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $name = $input->getArgument('name');
-        $path = $this->getPath($name);
+        $path = $this->requests_path . ($this->getPath($name) ? '/' . $this->getPath($name): '');
         
-        if ( !file_exists($path) ) {
+        if ( $path && !file_exists($path) ) {
             mkdir($path);
         }
 
-        $filename = $this->requests_path . '/' . $this->getPath($name) . '/' . $this->getClass($name) . '.php';
+        $filename = $path . '/' . $this->getClass($name) . '.php';
 
         $success = file_put_contents(
             $filename, 
             ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Request.sample"), [
                 'request' => $this->getClass($name),
-                'namespace' => 'App\\Http\Requests\\' . $this->getPath($name)
+                'namespace' => 'App\\Http\Requests' . ($this->getPath($name) ? "\\" . $this->getPath($name): '')
             ]) )
         );
 

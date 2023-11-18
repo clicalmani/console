@@ -9,23 +9,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
- * Create a new middleware service
+ * Create a new helper service
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:middleware',
-    description: 'Create a new middleware service.',
+    name: 'make:helper',
+    description: 'Create a new helper service.',
     hidden: false
 )]
-class MakeMiddlewareCommand extends Command
+class MakeHelperCommand extends Command
 {
-    private $middlewares_path;
+    private $providers_path;
 
     public function __construct(private $root_path)
     {
-        $this->middlewares_path = $this->root_path . '/app/http/middlewares';
+        $this->providers_path = $this->root_path . '/app/providers';
         parent::__construct();
     }
 
@@ -33,13 +33,13 @@ class MakeMiddlewareCommand extends Command
     {
         $name = $input->getArgument('name');
 
-        $filename = $this->middlewares_path . '/' . $name . '.php';
+        $filename = $this->providers_path . '/' . $name . '.php';
 
         $success = file_put_contents(
             $filename, 
             ltrim( 
-                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Middleware.sample"), [
-                    'middleware' => $name
+                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Helper.sample"), [
+                    'class' => $name
                 ])
             )
         );
@@ -56,9 +56,9 @@ class MakeMiddlewareCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create new middle');
+        $this->setHelp('Create a new helper service');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Middleware name')
+            new InputArgument('name', InputArgument::REQUIRED, 'Helper name')
         ]);
     }
 }
