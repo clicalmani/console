@@ -20,7 +20,12 @@ class $model_name extends Model
      */
     protected \$primaryKey = $primary_keys;
 
-    public function __construct(\$id = null)
+    /**
+     * Constructor 
+     *
+     * @param mixed \$id
+     */
+    public function __construct(mixed \$id = null)
     {
         parent::__construct(\$id);
     }
