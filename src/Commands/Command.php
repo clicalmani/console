@@ -3,19 +3,31 @@ namespace Clicalmani\Console\Commands;
 
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 
+if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
+    define('CONSOLE_MODE_ACTIVE', true);
+}
+
 abstract class Command extends ConsoleCommand
 {
-    /**
-     * Base path
-     * 
-     * @var string
-     */
-    protected $root_path;
-
-    public function __construct(string $root_path = null)
+    public function __construct(protected $root_path = null)
     {
-        $this->root_path = $root_path;
         parent::__construct();
+
+        /**
+         * Inject class dependencies
+         */
+        new \Clicalmani\Container\SPL_Loader( $this->root_path );
+
+        /**
+         * Load environment variables
+         */
+        $dotenv = \Dotenv\Dotenv::createImmutable( $this->root_path );
+        $dotenv->safeLoad();
+
+        /**
+         * Include helpers
+         */
+        \Clicalmani\Flesco\Support\Helper::include();
     }
 
     /**

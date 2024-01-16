@@ -1,17 +1,13 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Console\Commands\Command;
 use Clicalmani\Flesco\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
-if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
-    define('CONSOLE_MODE_ACTIVE', true);
-}
 
 #[AsCommand(
     name: 'migrate:fresh',
@@ -22,24 +18,8 @@ class MigrateFreshCommand extends Command
 {
     private $database_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
-        /**
-         * Inject class dependencies
-         */
-        new \Clicalmani\Container\SPL_Loader( $this->root_path );
-
-        /**
-         * Load environment variables
-         */
-        $dotenv = \Dotenv\Dotenv::createImmutable( $this->root_path );
-        $dotenv->safeLoad();
-
-        /**
-         * Include helpers
-         */
-        \Clicalmani\Flesco\Support\Helper::include();
-
         $this->database_path = $this->root_path . '/database';
         parent::__construct();
     }
