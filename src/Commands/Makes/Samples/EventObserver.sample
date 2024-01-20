@@ -1,0 +1,18 @@
+<?php 
+namespace App\Events;
+
+use Clicalmani\Flesco\Events\EventObserver as Observer;
+
+class $observer implements Observer
+{
+    /**
+     * Notify event
+     * 
+     * @param mixed \$data
+     * @return void
+     */
+    public function notify(mixed \$data) : void
+    {
+        // ...
+    }
+}

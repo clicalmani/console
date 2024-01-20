@@ -9,23 +9,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
- * Create a new helper service
+ * Create a new middleware service
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:helper',
-    description: 'Create a new helper service.',
+    name: 'make:event',
+    description: 'Create an event observer.',
     hidden: false
 )]
-class MakeHelperCommand extends Command
+class MakeEventObserverCommand extends Command
 {
-    private $providers_path;
+    private $events_path;
 
     public function __construct(protected $root_path)
     {
-        $this->providers_path = $this->root_path . '/app/providers';
+        $this->events_path = $this->root_path . '/app/events';
+        $this->mkdir($this->events_path);
         parent::__construct();
     }
 
@@ -33,13 +34,13 @@ class MakeHelperCommand extends Command
     {
         $name = $input->getArgument('name');
 
-        $filename = $this->providers_path . '/' . $name . '.php';
+        $filename = $this->events_path . '/' . $name . '.php';
 
         $success = file_put_contents(
             $filename, 
             ltrim( 
-                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Helper.sample"), [
-                    'class' => $name
+                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/EventObserver.sample"), [
+                    'observer' => $name
                 ])
             )
         );
@@ -56,9 +57,9 @@ class MakeHelperCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create a new helper service');
+        $this->setHelp('Create an event observer');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Helper name')
+            new InputArgument('name', InputArgument::REQUIRED, 'Observer name')
         ]);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace Clicalmani\Console\Commands\Local\Test;
 
+use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -24,7 +24,7 @@ class TestControllerCommand extends Command
 {
     private $controllers_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
         $this->controllers_path = $this->root_path . '/app/test/controllers';
         parent::__construct();
@@ -34,8 +34,6 @@ class TestControllerCommand extends Command
     {
         if ($controller = $input->getOption('controller')) {
             try {
-                // require $this->controllers_path . "//{$controller}Test.php";
-
                 $class = "\\App\Test\\Controllers\\{$controller}Test";
                 $class::test();
 

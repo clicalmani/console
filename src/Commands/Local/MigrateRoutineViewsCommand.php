@@ -1,9 +1,9 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Console\Commands\Command;
 use Clicalmani\Database\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,7 +24,7 @@ class MigrateRoutineViewsCommand extends Command
 {
     private $views_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
         $this->views_path = $this->root_path . '/database/routines/views';
         parent::__construct();

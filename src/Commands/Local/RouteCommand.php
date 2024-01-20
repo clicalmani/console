@@ -21,11 +21,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class RouteCommand extends Command
 {
-    private $database_path;
-
     public function __construct(protected $root_path)
     {
-        $this->database_path = $this->root_path . '/database';
         parent::__construct($root_path);
 
         /**

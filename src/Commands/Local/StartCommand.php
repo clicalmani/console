@@ -1,8 +1,8 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
+use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,7 +22,7 @@ class StartCommand extends Command
 {
     protected static $defaultDescription = 'Start the server';
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
         parent::__construct();
     }

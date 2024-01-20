@@ -20,6 +20,8 @@ class Kernel
       \Clicalmani\Console\Commands\Makes\MakeMiddlewareCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeSeederCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeHelperCommand::class,
+      \Clicalmani\Console\Commands\Makes\MakeEventObserverCommand::class,
+      \Clicalmani\Console\Commands\Makes\MakeCommandCommand::class,
       \Clicalmani\Console\Commands\Local\DBSeedCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeFactoryCommand::class,
       \Clicalmani\Console\Commands\Makes\Test\MakeTestControllerCommand::class,

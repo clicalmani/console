@@ -62,4 +62,21 @@ abstract class Command extends ConsoleCommand
     {
         return substr($filename, $this->isPath($filename) ? $this->isPath($filename) + 1: 0);
     }
+
+    /**
+     * Make a directory
+     * 
+     * @param string $pathname
+     * @param int $mode
+     * @param ?callable $callbak
+     * @return void
+     */
+    protected function mkdir(string $pathname, int $mode = 0777, ?callable $callback = null) : void
+    {
+        if ( ! file_exists($pathname) ) {
+            mkdir($pathname, $mode);
+
+            if (null !== $callback) $callback();
+        }
+    }
 }

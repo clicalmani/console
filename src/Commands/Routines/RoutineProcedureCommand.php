@@ -1,8 +1,8 @@
 <?php
 namespace Clicalmani\Console\Commands\Routines;
 
+use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -24,7 +24,7 @@ class RoutineProcedureCommand extends Command
 {
     private $database_path, $procedures_path;
 
-    public function __construct(private $root_path)
+    public function __construct(protected $root_path)
     {
         $this->database_path = $this->root_path . '/database';
 
