@@ -22,6 +22,7 @@ class Kernel
       \Clicalmani\Console\Commands\Makes\MakeHelperCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEventObserverCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeCommandCommand::class,
+      \Clicalmani\Console\Commands\Makes\MakeValidatorCommand::class,
       \Clicalmani\Console\Commands\Local\DBSeedCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeFactoryCommand::class,
       \Clicalmani\Console\Commands\Makes\Test\MakeTestControllerCommand::class,
