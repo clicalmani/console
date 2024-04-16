@@ -25,7 +25,8 @@ class MakeMiddlewareCommand extends Command
 
     public function __construct(protected $root_path)
     {
-        $this->middlewares_path = $this->root_path . '/app/http/middlewares';
+        $this->middlewares_path = $this->root_path . '/app/Http/Middlewares';
+        $this->mkdir($this->middlewares_path);
         parent::__construct();
     }
 

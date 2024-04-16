@@ -5,7 +5,6 @@ use Clicalmani\Console\Commands\Command;
 use Clicalmani\Flesco\Sandbox\Sandbox;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -22,23 +21,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class MakeMigrationCommand extends Command
 {
-    private $database_path;
+    private $migrations_path;
 
     public function __construct(protected $root_path)
     {
-        $this->database_path = $this->root_path . '/database';
-
-        if ( !file_exists($this->database_path . '/migrations') ) {
-            mkdir($this->database_path . '/migrations');
-        }
-        
+        $this->migrations_path = $this->root_path . '/database/migrations';
+        $this->mkdir($this->migrations_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $table    = $input->getArgument('table');
-        $filename = $this->database_path . '/migrations/' . date('Y_m_d') . '_' . time() . '_' . strtolower($table) . '.php';
+        $filename = $this->migrations_path . '/' . date('Y_m_d') . '_' . time() . '_' . strtolower($table) . '.php';
 
         $success = file_put_contents(
             $filename, 

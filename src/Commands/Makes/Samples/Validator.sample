@@ -1,5 +1,5 @@
 <?php
-namespace Clicalmani\Fundation\Validation\Validators;
+namespace App\Http\Validators;
 
 use Clicalmani\Fundation\Validation\InputValidator as Validator;
 
@@ -27,11 +27,11 @@ class $validator extends Validator
     /**
      * Validate input
      * 
-     * @param mixed &\$value Receive input value
-     * @param ?array \$options Receive validator options
+     * @param mixed &\$value Input value
+     * @param ?array \$options Validator options
      * @return bool
      */
-    public function validate(mixed &\$date, ?array \$options = [] ) : bool
+    public function validate(mixed &\$value, ?array \$options = [] ) : bool
     {
         /**
          * Do validation 

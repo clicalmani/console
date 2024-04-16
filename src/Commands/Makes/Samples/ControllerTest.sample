@@ -8,6 +8,6 @@ use Clicalmani\Flesco\Test\HasTest;
 class $controller extends Controller
 {
     use HasTest;
-    
+
     // Your code
 }

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Sandbox\Sandbox;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Create a model class command
@@ -25,7 +26,8 @@ class MakeModelCommand extends Command
 
     public function __construct(protected $root_path)
     {
-        $this->models_path = $this->root_path . '/app/models';
+        $this->models_path = $this->root_path . '/app/Models';
+        $this->mkdir($this->models_path);
         parent::__construct();
     }
 
@@ -34,16 +36,18 @@ class MakeModelCommand extends Command
         $model_name   = $input->getArgument('name');
         $table_name   = $input->getArgument('table');
         $primary_keys = $input->getArgument('keys');
+        $has_seeder   = $input->getOption('seed');
 
         if ( count($primary_keys) > 1 ) $primary_keys = json_encode($primary_keys);
         elseif ( count($primary_keys) > 0 ) $primary_keys = '"' . $primary_keys[0] . '"';
         else $primary_keys = '""';
 
         $filename = $this->models_path . '/' . $model_name . '.php';
+        $sample = $has_seeder ? 'ModelSeed.sample': 'Model.sample';
 
         $success = file_put_contents(
             $filename, 
-            ltrim( Sandbox::eval(file_get_contents( __DIR__ . '/Samples/Model.sample'), [
+            ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
                 'model_name'   => $model_name,
                 'table_name'   => $table_name,
                 'primary_keys' => $primary_keys
@@ -68,5 +72,6 @@ class MakeModelCommand extends Command
         $this->addArgument('name', InputArgument::REQUIRED, 'Model name');
         $this->addArgument('table', InputArgument::REQUIRED, 'Table name');
         $this->addArgument('keys', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Primary key(s)');
+        $this->addOption('seed', null, InputOption::VALUE_NONE, 'Model has a seeder');
     }
 }

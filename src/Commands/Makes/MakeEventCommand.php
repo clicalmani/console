@@ -9,23 +9,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Flesco\Sandbox\Sandbox;
 
 /**
- * Create a new middleware service
+ * Create a custom event command
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
     name: 'make:event',
-    description: 'Create an event observer.',
+    description: 'Create a custom event.',
     hidden: false
 )]
-class MakeEventObserverCommand extends Command
+class MakeEventCommand extends Command
 {
     private $events_path;
 
     public function __construct(protected $root_path)
     {
-        $this->events_path = $this->root_path . '/app/events';
+        $this->events_path = $this->root_path . '/app/Events';
         $this->mkdir($this->events_path);
         parent::__construct();
     }
@@ -39,8 +39,8 @@ class MakeEventObserverCommand extends Command
         $success = file_put_contents(
             $filename, 
             ltrim( 
-                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/EventObserver.sample"), [
-                    'observer' => $name
+                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Event.sample"), [
+                    'custom_event' => $name
                 ])
             )
         );
@@ -57,9 +57,9 @@ class MakeEventObserverCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create an event observer');
+        $this->setHelp('Create a custom event');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Observer name')
+            new InputArgument('name', InputArgument::REQUIRED, 'Custom event name')
         ]);
     }
 }

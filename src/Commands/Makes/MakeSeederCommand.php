@@ -22,11 +22,12 @@ use Symfony\Component\Console\Input\InputOption;
 )]
 class MakeSeederCommand extends Command
 {
-    private $database_path;
+    private $seeders_path;
     
     public function __construct(protected $root_path)
     {
-        $this->database_path = $this->root_path . '/database';
+        $this->seeders_path = $this->root_path . '/database/seeders';
+        $this->mkdir($this->seeders_path);
         parent::__construct();
     }
 
@@ -34,12 +35,7 @@ class MakeSeederCommand extends Command
     {
         $seeder  = $input->getArgument('name');
         
-        # Create seeders directory if not exists.
-        if ( !file_exists( $this->database_path . '/seeders' ) ) {
-            mkdir( $this->database_path . '/seeders' );
-        }
-
-        $filename = $this->database_path . '/seeders/' . $seeder . '.php';
+        $filename = $this->seeders_path . '/' . $seeder . '.php';
         $sample   = 'Seeder.sample';
         $model    = null;
 

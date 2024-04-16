@@ -1,0 +1,35 @@
+<?php 
+namespace App\Models;
+
+use Clicalmani\Flesco\Models\Model;
+use Clicalmani\Flesco\Models\HasFactory;
+
+class $model_name extends Model
+{
+    use HasFactory;
+
+    /**
+     * Model database table 
+     *
+     * @var string \$table Table name
+     */
+    protected \$table = "$table_name";
+
+    /**
+     * Table primary key(s)
+     * Use an array if the key is composed with more than one attributes.
+     *
+     * @var string|array \$primary_keys Table primary key.
+     */
+    protected \$primaryKey = $primary_keys;
+
+    /**
+     * Constructor 
+     *
+     * @param mixed \$id
+     */
+    public function __construct(mixed \$id = null)
+    {
+        parent::__construct(\$id);
+    }
+}

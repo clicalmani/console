@@ -1,0 +1,21 @@
+<?php
+namespace App\Events;
+
+use Clicalmani\Flesco\Events\Event;
+
+class $custom_event
+{
+    /**
+     * Event listener
+     * 
+     * @param \Clicalmani\Flesco\Events\Event \$event
+     * @param mixed \$data Event data
+     * @return void
+     */
+    public function listener(Event \$event, mixed \$data) : void
+    {
+        /**
+         * TODO
+         */
+    }
+}

@@ -27,15 +27,11 @@ class MakeTestControllerCommand extends Command
     {
         parent::__construct($root_path);
         
-        $this->controllers_path = $this->root_path . '/app/test/controllers';
+        $this->controllers_path = $this->root_path . '/app/Test/Controllers';
 
         if ( ! file_exists($this->controllers_path) ) {
-            $test_path = $this->root_path . '/app/test';
-
-            if ( ! file_exists($test_path) ) {
-                mkdir($test_path);
-            }
-
+            $test_path = $this->root_path . '/app/Test';
+            $this->mkdir($test_path);
             mkdir($this->controllers_path);
         }
     }

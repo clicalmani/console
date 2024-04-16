@@ -4,9 +4,12 @@ namespace $namespace;
 use Clicalmani\Flesco\Http\Requests\RequestController as Controller;
 use Clicalmani\Flesco\Http\Requests\Request;
 use Clicalmani\Flesco\Http\Response\Response;
+use Clicalmani\Flesco\Test\HasTest;
 
 class $controller extends Controller
 {
+    use HasTest;
+    
     /**
      * Display a listing of the resource.
      *

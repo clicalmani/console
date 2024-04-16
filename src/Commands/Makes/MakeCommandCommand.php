@@ -26,7 +26,7 @@ class MakeCommandCommand extends Command
 
     public function __construct(protected $root_path)
     {
-        $this->commands_path = $this->root_path . '/app/commands';
+        $this->commands_path = $this->root_path . '/app/Commands';
         $this->mkdir($this->commands_path);
         parent::__construct();
     }

@@ -26,7 +26,8 @@ class MakeRequestCommand extends Command
     public function __construct(protected $root_path)
     {
         parent::__construct($root_path);
-        $this->requests_path = $this->root_path . '/app/http/requests';
+        $this->requests_path = $this->root_path . '/app/Http/Requests';
+        $this->mkdir($this->requests_path);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int

@@ -27,7 +27,8 @@ class MakeControllerCommand extends Command
     public function __construct(protected $root_path)
     {
         parent::__construct($root_path);
-        $this->controllers_path = $this->root_path . '/app/http/controllers';
+        $this->controllers_path = $this->root_path . '/app/Http/Controllers';
+        $this->mkdir($this->controllers_path);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
@@ -40,9 +41,7 @@ class MakeControllerCommand extends Command
         $parameter   = null;
         $file_path   = $this->controllers_path . ($this->getPath($name) ? '/' . $this->getPath($name): '');
 
-        if ( ! file_exists($file_path) ) {
-            mkdir($file_path);
-        }
+        $this->mkdir($file_path);
 
         $filename = $file_path . '/' . $this->getClass($name) . '.php';
 
