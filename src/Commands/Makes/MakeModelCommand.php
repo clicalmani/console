@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Flesco\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,18 +23,27 @@ use Symfony\Component\Console\Input\InputOption;
 )]
 class MakeModelCommand extends Command
 {
-    private $models_path;
+    private $models_path, $entities_path;
 
     public function __construct(protected $root_path)
     {
         $this->models_path = $this->root_path . '/app/Models';
+        $this->entities_path = $this->root_path . '/database/entities';
         $this->mkdir($this->models_path);
+        $this->mkdir($this->entities_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $model_name   = $input->getArgument('name');
+        $entity_class = $this->findEntity("{$model_name}Entity");
+
+        if (NULL === $entity_class) {
+            $output->writeln("Could not find {$model_name}Entity class");
+            return Command::FAILURE;
+        }
+
         $table_name   = $input->getArgument('table');
         $primary_keys = $input->getArgument('keys');
         $has_seeder   = $input->getOption('seed');
@@ -49,6 +59,7 @@ class MakeModelCommand extends Command
             $filename, 
             ltrim( Sandbox::eval(file_get_contents( __DIR__ . "/Samples/$sample"), [
                 'model_name'   => $model_name,
+                'model_entity' => $entity_class,
                 'table_name'   => $table_name,
                 'primary_keys' => $primary_keys
             ]) )
@@ -72,6 +83,35 @@ class MakeModelCommand extends Command
         $this->addArgument('name', InputArgument::REQUIRED, 'Model name');
         $this->addArgument('table', InputArgument::REQUIRED, 'Table name');
         $this->addArgument('keys', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Primary key(s)');
+        $this->addOption('entity', null, InputOption::VALUE_REQUIRED, 'Model has a seeder');
         $this->addOption('seed', null, InputOption::VALUE_NONE, 'Model has a seeder');
+    }
+
+    private function findEntity(string $name)
+    {
+        $dir = new \RecursiveDirectoryIterator($this->entities_path);
+        $filter = new RecursiveFilter($dir);
+        $filter->setPattern("\\.php$");
+        $filter->setFilter(["$name.php"]);
+        
+        foreach (new \RecursiveIteratorIterator($filter) as $file) {
+            $pathname = $file->getPathname();
+            $className = substr($pathname, strlen($this->entities_path) - strlen('/database/entities') + 1);
+            $className = substr($className, 0, strlen($className) - 4);
+
+            $bindings = [
+                '/' => '\\',
+                'database' => 'Database',
+                'entities' => 'Entities'
+            ];
+
+            foreach ($bindings as $key => $value) {
+                $className = str_replace($key, $value, $className);
+            }
+
+            return $className;
+        }
+
+        return null;
     }
 }

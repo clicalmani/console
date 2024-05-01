@@ -1,6 +1,7 @@
 <?php 
 namespace Clicalmani\Console\Commands;
 
+use Clicalmani\Container\Manager;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 
 if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
@@ -9,25 +10,31 @@ if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
 
 abstract class Command extends ConsoleCommand
 {
+    protected $container;
+
     public function __construct(protected $root_path = null)
     {
         parent::__construct();
 
+        $root_path = dirname( __DIR__, 5);
+
         /**
          * Inject class dependencies
          */
-        new \Clicalmani\Container\SPL_Loader( $this->root_path );
+        new \Clicalmani\Container\SPL_Loader( $this->root_path ?? $root_path );
 
         /**
          * Load environment variables
          */
-        $dotenv = \Dotenv\Dotenv::createImmutable( $this->root_path );
+        $dotenv = \Dotenv\Dotenv::createImmutable( $this->root_path ?? $root_path );
         $dotenv->safeLoad();
 
         /**
          * Include helpers
          */
         \Clicalmani\Flesco\Support\Helper::include();
+        
+        $this->container = new Manager($root_path ?? $root_path);
     }
 
     /**
@@ -78,5 +85,10 @@ abstract class Command extends ConsoleCommand
 
             if (null !== $callback) $callback();
         }
+    }
+
+    protected function formatOutput(string $message)
+    {
+        return str_pad("$message ", 100, '-');
     }
 }

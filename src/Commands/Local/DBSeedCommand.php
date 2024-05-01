@@ -31,21 +31,21 @@ class DBSeedCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        if ($class = $input->getOption('class')) {
-            require_once $this->database_path . "/seeders/$class.php";
+        if ($seeder = $input->getOption('seeder')) {
+            require_once $this->database_path . "/seeders/$seeder.php";
 
-            $classNs = "\Database\Seeders\\$class";
-            $seeder = new $classNs;
+            $seederNs = "\Database\Seeders\\$seeder";
+            $seeder = new $seederNs;
 
-            $output->writeln('Running ' . $class);
+            $output->writeln($this->formatOutput('Running ' . $seeder));
 
             if ( $this->runSeed($seeder, $output) ) {
-                $output->writeln('success');
+                $output->writeln($this->formatOutput('Success'));
 
                 return Command::SUCCESS;
             }
 
-            $output->writeln('failure');
+            $output->writeln($this->formatOutput('Failed'));
 
             return Command::FAILURE;
         }
@@ -53,21 +53,26 @@ class DBSeedCommand extends Command
         try {
             $seeders_dir = new \RecursiveDirectoryIterator($this->database_path . '/seeders');
             $filter = new RecursiveFilter($seeders_dir);
+            $filter->setPattern("\\.php$");
 
-            $output->writeln('Seeding the database');
+            $output->writeln($this->formatOutput('Seeding the database'));
 
-            foreach ($filter->getFiles() as $filename => $pathname) {
+            foreach (new \RecursiveIteratorIterator($filter) as $file) {
+
+                $pathname = $file->getPathname();
+                $filename = $file->getFilename();
+                
                 if(is_readable($pathname)) {
                     $class = substr($filename, 0, strlen($filename) - 4);
                     $classNs = "\Database\Seeders\\$class";
                     $seeder = new $classNs;
 
-                    $output->writeln('Seeding ' . $class);
+                    $output->writeln($this->formatOutput('Running ' . $class));
 
                     if ( $this->runSeed($seeder, $output) ) {
-                        $output->writeln('success');
+                        $output->writeln($this->formatOutput('Success'));
                     } else {
-                        $output->writeln('failure');
+                        $output->writeln($this->formatOutput('Failure'));
                     }
                 }
             }
@@ -84,7 +89,7 @@ class DBSeedCommand extends Command
     {
         $this->setHelp('Run a database seed.');
         $this->setDefinition([
-            new InputOption('class', null, InputOption::VALUE_REQUIRED, 'Seeder class')
+            new InputOption('seeder', null, InputOption::VALUE_REQUIRED, 'Seeder class')
         ]);
     }
 

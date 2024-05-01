@@ -1,0 +1,9 @@
+<?php
+namespace Database\Entities;
+
+use Clicalmani\Database\Factory\Entity;
+
+class $name extends Entity
+{
+    // ...
+}
