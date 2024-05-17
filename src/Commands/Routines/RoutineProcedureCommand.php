@@ -28,13 +28,8 @@ class RoutineProcedureCommand extends Command
     {
         $this->database_path = $this->root_path . '/database';
 
-        if ( !file_exists($this->database_path . '/routines') ) {
-            mkdir($this->database_path . '/routines');
-        }
-
-        if ( !file_exists($this->database_path . '/routines/procedures') ) {
-            mkdir($this->database_path . '/routines/procedures');
-        }
+        $this->mkdir($this->database_path . '/routines');
+        $this->mkdir($this->database_path . '/routines/procedures');
 
         $this->procedures_path = $this->database_path . '/routines/procedures';
 

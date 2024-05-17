@@ -1,7 +1,7 @@
 <?php 
 namespace App\Models;
 
-use Clicalmani\Flesco\Models\Model;
+use Clicalmani\Database\Factory\Models\Model;
 
 class $model_name extends Model
 {

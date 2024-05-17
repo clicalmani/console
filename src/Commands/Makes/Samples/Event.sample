@@ -1,14 +1,14 @@
 <?php
 namespace App\Events;
 
-use Clicalmani\Flesco\Events\Event;
+use Clicalmani\Database\Factory\Models\Events\Event;
 
 class $custom_event
 {
     /**
      * Event listener
      * 
-     * @param \Clicalmani\Flesco\Events\Event \$event
+     * @param \Clicalmani\Database\Factory\Models\Events\Event \$event
      * @param mixed \$data Event data
      * @return void
      */

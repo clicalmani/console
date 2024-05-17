@@ -27,22 +27,15 @@ class RoutineFunctionCommand extends Command
     {
         $this->database_path = $this->root_path . '/database';
 
-        if ( !file_exists($this->database_path . '/routines') ) {
-            mkdir($this->database_path . '/routines');
-        }
-
-        if ( !file_exists($this->database_path . '/routines/functions') ) {
-            mkdir($this->database_path . '/routines/functions');
-        }
-
-        $this->functions_path = $this->database_path . '/routines/functions';
+        $this->mkdir($this->database_path . '/routines');
+        $this->mkdir($this->database_path . '/routines/functions');
 
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $function   = $input->getArgument('name');
+        $function = $input->getArgument('name');
         $filename = $this->functions_path . "/$function";
         
         $success = file_put_contents(

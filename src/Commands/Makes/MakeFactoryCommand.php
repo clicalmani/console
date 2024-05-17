@@ -35,9 +35,7 @@ class MakeFactoryCommand extends Command
         $factory  = $input->getArgument('name');
         
         # Create factories directory if not exists.
-        if ( !file_exists( $this->database_path . '/factories' ) ) {
-            mkdir( $this->database_path . '/factories' );
-        }
+        $this->mkdir($this->database_path . '/factories');
 
         $filename = $this->database_path . '/factories/' . $factory . '.php';
         $sample   = 'Factory.sample';
@@ -45,6 +43,16 @@ class MakeFactoryCommand extends Command
 
         if ( $model = $input->getOption('model') ) {
             $sample = 'FactoryModel.sample';
+        }
+
+        if (NULL === $model) {
+            $output->writeln("Factory model is not specified");
+            return Command::FAILURE;
+        }
+
+        if ($factory !== "{$model}Factory") {
+            $output->writeln("Factory name is not correct.");
+            return Command::FAILURE;
         }
 
         $success = file_put_contents(

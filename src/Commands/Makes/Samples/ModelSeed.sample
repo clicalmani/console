@@ -1,8 +1,8 @@
 <?php 
 namespace App\Models;
 
-use Clicalmani\Flesco\Models\Model;
-use Clicalmani\Flesco\Models\HasFactory;
+use Clicalmani\Database\Factory\Models\Model;
+use Clicalmani\Database\Factory\Models\HasFactory;
 
 class $model_name extends Model
 {
