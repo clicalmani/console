@@ -1,7 +1,7 @@
 <?php 
 namespace App\Test\Controllers;
 
-use Clicalmani\Flesco\Test\Controllers\TestController;
+use Clicalmani\Fundation\Test\Controllers\TestController;
 use App\Http\Controllers\\$class;
 
 class $test extends TestController 

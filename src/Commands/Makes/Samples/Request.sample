@@ -1,7 +1,7 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Flesco\Http\Requests\Request;
+use Clicalmani\Fundation\Http\Requests\Request;
 
 class $request extends Request
 {

@@ -1,9 +1,9 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Flesco\Http\Requests\RequestController as Controller;
-use Clicalmani\Flesco\Http\Response\Response;
-use Clicalmani\Flesco\Test\HasTest;
+use Clicalmani\Fundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Fundation\Http\Response\Response;
+use Clicalmani\Fundation\Test\HasTest;
 
 class $controller extends Controller
 {

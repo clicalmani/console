@@ -23,7 +23,7 @@ class MigrateStoredProceduresCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Flesco\Logic\Internal\Tonka;
+        $tonka = new \Clicalmani\Fundation\Logic\Internal\Tonka;
         $tonka->setOutput($output);
         return $tonka->routineProcs() ? Command::SUCCESS: Command::FAILURE;
     }

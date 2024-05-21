@@ -1,7 +1,7 @@
 <?php 
 namespace App\Providers;
 
-use Clicalmani\Flesco\Providers\ServiceProvider;
+use Clicalmani\Fundation\Providers\ServiceProvider;
 
 class $class extends ServiceProvider
 {

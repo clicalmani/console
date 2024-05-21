@@ -1,7 +1,7 @@
 <?php 
 namespace Clicalmani\Console\Commands;
 
-use Clicalmani\Container\Manager;
+use Clicalmani\Fundation\Container\SPL_Loader;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 
 if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
@@ -18,7 +18,7 @@ abstract class Command extends ConsoleCommand
         
         $this->root_path = dirname( __DIR__, 5);
 
-        \Clicalmani\Flesco\Providers\ServiceProvider::init(
+        \Clicalmani\Fundation\Providers\ServiceProvider::init(
             $app = require $this->root_path . '/config/app.php',
             $kernel = require $this->root_path . '/bootstrap/kernel.php',
             $http_kernel = require $this->root_path . '/app/Http/kernel.php'

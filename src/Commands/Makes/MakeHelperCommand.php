@@ -6,7 +6,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Sandbox\Sandbox;
+use Clicalmani\Fundation\Sandbox\Sandbox;
 
 /**
  * Create a new helper service

@@ -6,7 +6,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Flesco\Sandbox\Sandbox;
+use Clicalmani\Fundation\Sandbox\Sandbox;
 
 /**
  * Create a new test controller
@@ -41,7 +41,7 @@ class MakeTestControllerCommand extends Command
         $controller   = $input->getArgument('controller');
         $test_controller = $this->getClass($controller) . 'Test';
 
-        $reflection = new \ReflectionClass(\Clicalmani\Flesco\Http\Requests\RequestController::class);
+        $reflection = new \ReflectionClass(\Clicalmani\Fundation\Http\Requests\RequestController::class);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
         $inherited = [];
 

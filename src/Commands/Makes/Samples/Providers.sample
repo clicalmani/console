@@ -1,2 +1,2 @@
 <?php 
-Clicalmani\Flesco\Providers\ServiceProvider::\$providers = $providers;
+Clicalmani\Fundation\Providers\ServiceProvider::\$providers = $providers;

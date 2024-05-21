@@ -2,7 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Flesco\Misc\RecursiveFilter;
+use Clicalmani\Fundation\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,7 +28,7 @@ class DBSeedCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Flesco\Logic\Internal\Tonka;
+        $tonka = new \Clicalmani\Fundation\Logic\Internal\Tonka;
         $tonka->setOutput($output);
         return $tonka->seed($input->getOption('seeder')) ? Command::SUCCESS: Command::FAILURE;
     }
