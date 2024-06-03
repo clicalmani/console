@@ -1,5 +1,5 @@
 <?php 
-namespace App\Test\Controllers;
+namespace Test\Controllers;
 
 use Clicalmani\Fundation\Test\Controllers\TestController;
 use App\Http\Controllers\\$class;

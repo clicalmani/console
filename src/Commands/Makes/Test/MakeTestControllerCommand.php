@@ -21,19 +21,15 @@ use Clicalmani\Fundation\Sandbox\Sandbox;
 )]
 class MakeTestControllerCommand extends Command
 {
-    private $controllers_path;
+    private $controller_path;
 
     public function __construct(protected $root_path)
     {
         parent::__construct($root_path);
         
-        $this->controllers_path = $this->root_path . '/app/Test/Controllers';
-
-        if ( ! file_exists($this->controllers_path) ) {
-            $test_path = $this->root_path . '/app/Test';
-            $this->mkdir($test_path);
-            mkdir($this->controllers_path);
-        }
+        $this->controller_path = $this->root_path . '/test/Controllers';
+        $this->mkdir($this->root_path . '/test');
+        $this->mkdir($this->root_path . '/test/Controllers');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
@@ -43,7 +39,7 @@ class MakeTestControllerCommand extends Command
 
         $reflection = new \ReflectionClass(\Clicalmani\Fundation\Http\Requests\RequestController::class);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
-        $inherited = [];
+        $inherited = ['test'];
 
         foreach ($methods as $method) {
             $inherited[] = $method->name;
@@ -98,7 +94,7 @@ class MakeTestControllerCommand extends Command
         $methods = $methods($args);
 
         $success = file_put_contents(
-            $this->controllers_path . "/$test_controller.php", 
+            $this->controller_path . "/$test_controller.php", 
             ltrim( Sandbox::eval(file_get_contents( dirname( __DIR__) . "/Samples/Test/Controller.sample"), [
                 'test'       => $test_controller,
                 'controller' => $this->getClass($controller),

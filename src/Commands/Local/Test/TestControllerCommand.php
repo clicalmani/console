@@ -10,9 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Fundation\Sandbox\Sandbox;
 
 /**
- * Create a new test controller
+ * TestControllerCommand Class
  * 
- * @package Clicalmani\Console
+ * @package clicalmani/console
  * @author clicalmani
  */
 #[AsCommand(
@@ -22,11 +22,11 @@ use Clicalmani\Fundation\Sandbox\Sandbox;
 )]
 class TestControllerCommand extends Command
 {
-    private $controllers_path;
+    private $controller_path;
 
     public function __construct(protected $root_path)
     {
-        $this->controllers_path = $this->root_path . '/app/test/controllers';
+        $this->controller_path = $this->root_path . '/test/Controllers';
         parent::__construct();
     }
 
@@ -34,7 +34,7 @@ class TestControllerCommand extends Command
     {
         if ($controller = $input->getOption('controller')) {
             try {
-                $class = "\\App\Test\\Controllers\\{$controller}Test";
+                $class = "\\Test\\Controllers\\{$controller}Test";
                 $class::test();
 
                 return Command::SUCCESS;
@@ -46,7 +46,7 @@ class TestControllerCommand extends Command
         }
 
         try {
-            $test_dir = new \RecursiveDirectoryIterator($this->controllers_path);
+            $test_dir = new \RecursiveDirectoryIterator($this->controller_path);
 	
             foreach (new \RecursiveIteratorIterator($test_dir) as $file) { 
                 
@@ -57,7 +57,7 @@ class TestControllerCommand extends Command
                         require $pathname;
 
                         $filename = $file->getFileName();
-                        $class = "\\App\Test\Controllers\\" . substr($filename, 0, strlen($filename) - 4);
+                        $class = "\\Test\Controllers\\" . substr($filename, 0, strlen($filename) - 4);
                         $class::test();
                     }
                 }

@@ -24,7 +24,7 @@ abstract class Command extends ConsoleCommand
             $http_kernel = require $this->root_path . '/app/Http/kernel.php'
         );
         
-        $this->container = new Manager($root_path ?? $root_path);
+        $this->container = new SPL_Loader($root_path ?? $root_path);
     }
 
     /**
