@@ -29,9 +29,18 @@ class StartCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        if ($input->getOption('worker')) {
+            if (NULL !== $worker = $input->getOption('file')) {
+                //
+            } else {
+                $output->writeln('A worker file must be specified');
+                return Command::FAILURE;
+            }
+        }
+
         $port = $input->getOption('port');
         $success = shell_exec("php -S localhost:$port server.php");
-
+        
         if ($success) return Command::SUCCESS;
 
         return Command::FAILURE;
@@ -41,7 +50,9 @@ class StartCommand extends Command
     {
         $this->setHelp('This command start the web server');
         $this->setDefinition([
-            new InputOption('port', 'p', InputOption::VALUE_REQUIRED, 'Host port', 8000)
+            new InputOption('port', 'p', InputOption::VALUE_REQUIRED, 'Host port', 8000),
+            new InputOption('worker', 'w', InputOption::VALUE_NONE, 'Start a worker command'),
+            new InputOption('file', 'f', InputOption::VALUE_REQUIRED, 'Worker file')
         ]);
     }
 }

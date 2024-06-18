@@ -14,6 +14,7 @@ class Kernel
       \Clicalmani\Console\Commands\Local\MigrateStoredProceduresCommand::class,
       \Clicalmani\Console\Commands\Local\MigrateRoutineViewsCommand::class,
       \Clicalmani\Console\Commands\Local\StorageLinkCommand::class,
+      \Clicalmani\Console\Commands\Local\RoutesCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeMigrationCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeModelCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeControllerCommand::class,
