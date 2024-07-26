@@ -4,6 +4,7 @@ namespace Clicalmani\Console\Commands\Local;
 use Clicalmani\Console\Commands\Command;
 use Clicalmani\Fundation\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,6 +31,9 @@ class DBSeedCommand extends Command
     {
         $tonka = new \Clicalmani\Fundation\Logic\Internal\Tonka;
         $tonka->setOutput($output);
+
+        if ($file = $input->getOption('file')) 
+            return $tonka->seed(null, $file) ? Command::SUCCESS: Command::FAILURE;
         return $tonka->seed($input->getOption('seeder')) ? Command::SUCCESS: Command::FAILURE;
     }
 
@@ -37,6 +41,7 @@ class DBSeedCommand extends Command
     {
         $this->setHelp('Run a database seed.');
         $this->setDefinition([
+            new InputOption('file', null, InputOption::VALUE_REQUIRED, 'Migration file name'),
             new InputOption('seeder', null, InputOption::VALUE_REQUIRED, 'Seeder class')
         ]);
     }

@@ -49,7 +49,8 @@ class MigrateFreshCommand extends Command
 
         if (false !== $input->getOption('seed')) {
             $db_seed = new ArrayInput([
-                'command' => 'db:seed'
+                'command' => 'db:seed',
+                '--file' => $filename
             ]);
 
             if (0 !== $this->getApplication()->doRun($db_seed, $output)) {

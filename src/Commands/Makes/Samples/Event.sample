@@ -6,13 +6,13 @@ use Clicalmani\Database\Factory\Models\Events\Event;
 class $custom_event
 {
     /**
-     * Event listener
+     * Event handler
      * 
      * @param \Clicalmani\Database\Factory\Models\Events\Event \$event
      * @param mixed \$data Event data
      * @return void
      */
-    public function listener(Event \$event, mixed \$data) : void
+    public function handler(Event \$event, mixed \$data) : void
     {
         /**
          * TODO
