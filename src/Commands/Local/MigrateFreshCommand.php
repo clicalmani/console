@@ -25,7 +25,7 @@ class MigrateFreshCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $filename = $input->getArgument('name');
-        $tonka = new \Clicalmani\Fundation\Logic\Internal\Tonka;
+        $tonka = new \Clicalmani\Fondation\Logic\Internal\Tonka;
         $tonka->setOutput($output);
         $tonka->setDumpFile($input->getOption('dump'));
 
