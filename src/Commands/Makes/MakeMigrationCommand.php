@@ -2,7 +2,7 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Fondation\Sandbox\Sandbox;
+use Clicalmani\Foundation\Sandbox\Sandbox;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;

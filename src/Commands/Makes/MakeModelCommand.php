@@ -2,12 +2,12 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Fondation\Misc\RecursiveFilter;
+use Clicalmani\Foundation\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Fondation\Sandbox\Sandbox;
+use Clicalmani\Foundation\Sandbox\Sandbox;
 use Symfony\Component\Console\Input\InputOption;
 
 /**

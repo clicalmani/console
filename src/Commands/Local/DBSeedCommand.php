@@ -2,7 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Fondation\Misc\RecursiveFilter;
+use Clicalmani\Foundation\Misc\RecursiveFilter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +29,7 @@ class DBSeedCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Fondation\Logic\Internal\Tonka;
+        $tonka = new \Clicalmani\Foundation\Logic\Internal\Tonka;
         $tonka->setOutput($output);
 
         if ($file = $input->getOption('file')) 

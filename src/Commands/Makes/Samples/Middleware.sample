@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Middlewares;
 
-use Clicalmani\Fondation\Http\Middlewares\Middleware;
-use Clicalmani\Fondation\Http\Requests\Request;
-use Clicalmani\Fondation\Http\Response\Response;
+use Clicalmani\Foundation\Http\Middlewares\Middleware;
+use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\Response\Response;
 
 class $middleware extends Middleware 
 {

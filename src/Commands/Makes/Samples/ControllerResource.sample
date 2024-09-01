@@ -1,11 +1,11 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Fondation\Http\Requests\RequestController as Controller;
-use Clicalmani\Fondation\Http\Requests\Request;
-use Clicalmani\Fondation\Http\Response\Response;
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\Response\Response;
 use $model_class;
-use Clicalmani\Fondation\Test\HasTest;
+use Clicalmani\Foundation\Test\HasTest;
 
 class $controller extends Controller
 {
@@ -15,7 +15,7 @@ class $controller extends Controller
      * Display a listing of the resource.
      *
      * @param \\$model_class $$parameter
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function index($resource $$parameter)
     {
@@ -26,8 +26,8 @@ class $controller extends Controller
      * Store a newly created resource in storage.
      *
      * @param \\$model_class $$parameter
-     * @param  \Clicalmani\Fondation\Http\Requests\Request  \$request
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function store($resource $$parameter)
     {
@@ -39,7 +39,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function create($resource $$parameter, int \$id)
     {
@@ -51,7 +51,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param  int \$id
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function update($resource $$parameter, int \$id)
     {
@@ -63,7 +63,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id 
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function destroy($resource $$parameter, int \$id)
     {

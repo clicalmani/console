@@ -1,10 +1,10 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Fondation\Http\Requests\RequestController as Controller;
-use Clicalmani\Fondation\Http\Requests\Request;
-use Clicalmani\Fondation\Http\Response\Response;
-use Clicalmani\Fondation\Test\HasTest;
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\Response\Response;
+use Clicalmani\Foundation\Test\HasTest;
 
 class $controller extends Controller
 {
@@ -13,7 +13,7 @@ class $controller extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function index()
     {
@@ -23,8 +23,8 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Fondation\Http\Requests\Request  \$request
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function store(Request \$request)
     {
@@ -34,8 +34,8 @@ class $controller extends Controller
     /**
      * Create the specified resource.
      *
-     * @param  \Clicalmani\Fondation\Http\Requests\Request  \$request
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function create(Request \$request)
     {
@@ -45,8 +45,8 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Fondation\Http\Requests\Request  \$request
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function update(Request \$request)
     {
@@ -56,8 +56,8 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Fondation\Http\Requests\Request  \$request
-     * @return \Clicalmani\Fondation\Http\Response\JsonResponse
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
     public function destroy(Request \$request)
     {
