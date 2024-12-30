@@ -15,6 +15,7 @@ class Kernel
       \Clicalmani\Console\Commands\Local\MigrateRoutineViewsCommand::class,
       \Clicalmani\Console\Commands\Local\MigrateSessionTableCommand::class,
       \Clicalmani\Console\Commands\Local\StorageLinkCommand::class,
+      \Clicalmani\Console\Commands\Local\ClearSessionCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeMigrationCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeModelCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeControllerCommand::class,

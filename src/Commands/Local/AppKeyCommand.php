@@ -2,56 +2,49 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generate app key
+ * AppKeyCommand Class
  * 
- * @package Clcialmani\Console
+ * @package clicalmani/console
  * @author clicalmani
  */
-#[AsCommand(
-    name: 'app:key',
-    description: 'Generate app key',
+#[\Symfony\Component\Console\Attribute\AsCommand(
+    name: 'key:generate',
+    description: 'Generate a new app key',
     hidden: false
 )]
 class AppKeyCommand extends Command
 {
-    private $database_path;
-
     public function __construct(protected $root_path)
     {
-        $this->database_path = $this->root_path . '/database';
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $env_file = root_path('/.env');
-        $key = password( faker()->alphaNum(100) );
+        $output->writeln('Generating app key');
 
-        if ( file_exists($env_file) ) {
-            $fh = \fopen($env_file, 'r');
+        $generator = new \Clicalmani\Console\Logic\GenerateAppKey();
 
-            while (!feof($fh)) {
-                $line = \fgets($fh, 1024);
+        if (FALSE === $generator->isEnvSet()) {
+            $output->writeln('App key is not set in .env file');
+            $output->writeln('To set a new app key, please create the .env file and set the APP_KEY variable');
+            $output->writeln('Current key: ' . env('APP_KEY'));
 
-                if (preg_match("/APP_KEY/", $line)) {
-                    file_put_contents(
-                        $env_file,
-                        str_replace(trim($line), "APP_KEY = $key", file_get_contents($env_file))
-                    );
-
-                    $output->writeln('success');
-
-                    return Command::SUCCESS;
-                }
-            }
+            return Command::FAILURE;
         }
 
-        $output->writeln('Failure');
+        if ($key = $generator->generate()) {
+            $output->writeln('App key set');
+            $output->writeln('Key: ' . $key);
+
+            return Command::SUCCESS;
+        }
+
+        $output->writeln('Failed to set app key');
 
         return Command::FAILURE;
     }
