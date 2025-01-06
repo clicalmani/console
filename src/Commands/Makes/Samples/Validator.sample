@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Validators;
 
-use Clicalmani\Foundation\Validation\Validator as Validator;
+use Clicalmani\Foundation\Validation\Validator;
 
 class $validator extends Validator
 {

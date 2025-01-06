@@ -23,7 +23,7 @@ class MigrateRoutineViewsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Foundation\Logic\Internal\Tonka;
+        $tonka = new \Clicalmani\Foundation\Support\Facades\Tonka;
         $tonka->setOutput($output);
         return $tonka->routineViews() ? Command::SUCCESS: Command::FAILURE;
     }
