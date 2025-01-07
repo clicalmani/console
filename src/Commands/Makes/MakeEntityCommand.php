@@ -23,9 +23,9 @@ class MakeEntityCommand extends Command
 {
     private $entities_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->entities_path = $this->root_path . '/database/entities';
+        $this->entities_path = $this->rootPath . '/database/entities';
         $this->mkdir($this->entities_path);
         parent::__construct();
     }

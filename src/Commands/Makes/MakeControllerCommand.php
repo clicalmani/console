@@ -24,10 +24,10 @@ class MakeControllerCommand extends Command
 {
     private $controllers_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        parent::__construct($root_path);
-        $this->controllers_path = $this->root_path . '/app/Http/Controllers';
+        parent::__construct($rootPath);
+        $this->controllers_path = $this->rootPath . '/app/Http/Controllers';
         $this->mkdir($this->controllers_path);
     }
 

@@ -23,9 +23,9 @@ class MakeMigrationCommand extends Command
 {
     private $migrations_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->migrations_path = $this->root_path . '/database/migrations';
+        $this->migrations_path = $this->rootPath . '/database/migrations';
         $this->mkdir($this->migrations_path);
         parent::__construct();
     }

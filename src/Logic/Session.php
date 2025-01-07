@@ -15,7 +15,7 @@ class Session
      * 
      * @var string
      */
-    protected $root_path;
+    protected $rootPath;
 
     /**
      * Set root path
@@ -25,7 +25,7 @@ class Session
      */
     public function setPath(string $path) : void
     {
-        $this->root_path = $path;
+        $this->rootPath = $path;
     }
 
     /**
@@ -47,7 +47,7 @@ class Session
     public function clear() : void
     {
         $iterator = new \RecursiveDirectoryIterator(
-            $this->root_path . '/storage/framework/sessions',
+            $this->rootPath . '/storage/framework/sessions',
             \RecursiveDirectoryIterator::SKIP_DOTS
         );
         $filter = new \Clicalmani\Foundation\Misc\RecursiveFilter($iterator);

@@ -22,9 +22,9 @@ class TestControllerCommand extends Command
 {
     private $controller_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->controller_path = $this->root_path . '/test/Controllers';
+        $this->controller_path = $this->rootPath . '/test/Controllers';
         parent::__construct();
     }
 

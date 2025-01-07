@@ -24,9 +24,9 @@ class MakeValidatorCommand extends Command
 {
     private $validators_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->validators_path = $this->root_path . '/app/Http/Validators';
+        $this->validators_path = $this->rootPath . '/app/Http/Validators';
         $this->mkdir($this->validators_path);
         parent::__construct();
     }

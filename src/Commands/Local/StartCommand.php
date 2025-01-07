@@ -22,7 +22,7 @@ class StartCommand extends Command
 {
     protected static $defaultDescription = 'Start the server';
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
         parent::__construct();
     }

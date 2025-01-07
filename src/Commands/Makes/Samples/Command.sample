@@ -17,9 +17,9 @@ class $command extends Command
      * Constructor
      * 
      * @throws LogicException — When the command name is empty
-     * @param string \$root_path
+     * @param string \$rootPath
      */
-    public function __construct(protected \$root_path)
+    public function __construct(protected \$rootPath)
     {
         parent::__construct();
     }

@@ -25,10 +25,10 @@ class MakeModelCommand extends Command
 {
     private $models_path, $entities_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->models_path = $this->root_path . '/app/Models';
-        $this->entities_path = $this->root_path . '/database/entities';
+        $this->models_path = $this->rootPath . '/app/Models';
+        $this->entities_path = $this->rootPath . '/database/entities';
         $this->mkdir($this->models_path);
         $this->mkdir($this->entities_path);
         parent::__construct();

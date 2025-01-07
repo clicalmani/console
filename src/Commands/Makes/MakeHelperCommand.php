@@ -23,9 +23,9 @@ class MakeHelperCommand extends Command
 {
     private $providers_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->providers_path = $this->root_path . '/app/Providers';
+        $this->providers_path = $this->rootPath . '/app/Providers';
         $this->mkdir($this->providers_path);
         parent::__construct();
     }

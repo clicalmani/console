@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class DBSeedCommand extends Command
 {
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
         parent::__construct();
     }

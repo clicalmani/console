@@ -21,10 +21,10 @@ class StorageLinkCommand extends Command
 {
     private $storage_path, $public_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->storage_path = $this->root_path . '/storage';
-        $this->public_path = $this->root_path . '/public';
+        $this->storage_path = $this->rootPath . '/storage';
+        $this->public_path = $this->rootPath . '/public';
         parent::__construct();
     }
 

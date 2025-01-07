@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class MigrateStoredProceduresCommand extends Command
 {
-    public function __construct(protected $root_path) { parent::__construct(); }
+    public function __construct(protected $rootPath) { parent::__construct(); }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {

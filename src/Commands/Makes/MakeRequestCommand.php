@@ -23,10 +23,10 @@ class MakeRequestCommand extends Command
 {
     private $requests_path;
     
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        parent::__construct($root_path);
-        $this->requests_path = $this->root_path . '/app/Http/Requests';
+        parent::__construct($rootPath);
+        $this->requests_path = $this->rootPath . '/app/Http/Requests';
         $this->mkdir($this->requests_path);
     }
 

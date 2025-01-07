@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class ClearSessionCommand extends Command
 {
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
         parent::__construct();
     }
@@ -29,7 +29,7 @@ class ClearSessionCommand extends Command
 
         $session = new \Clicalmani\Console\Logic\Session;
         $session->setOutput($output);
-        $session->setPath($this->root_path);
+        $session->setPath($this->rootPath);
 
         try {
             $session->clear();

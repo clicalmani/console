@@ -24,9 +24,9 @@ class MakeSeederCommand extends Command
 {
     private $seeders_path;
     
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->seeders_path = $this->root_path . '/database/seeders';
+        $this->seeders_path = $this->rootPath . '/database/seeders';
         $this->mkdir($this->seeders_path);
         parent::__construct();
     }

@@ -12,19 +12,13 @@ abstract class Command extends ConsoleCommand
 {
     protected $container;
 
-    public function __construct(protected $root_path = null)
+    public function __construct(protected $rootPath = null)
     {
         parent::__construct();
         
-        $this->root_path = dirname( __DIR__, 5);
-
-        \Clicalmani\Foundation\Providers\ServiceProvider::init(
-            $app = require $this->root_path . '/config/app.php',
-            $kernel = require $this->root_path . '/bootstrap/kernel.php',
-            $http_kernel = require $this->root_path . '/app/Http/kernel.php'
-        );
+        $this->rootPath = dirname( __DIR__, 5);
         
-        $this->container = new SPL_Loader($root_path ?? $root_path);
+        $this->container = new SPL_Loader($rootPath ?? $rootPath);
     }
 
     /**

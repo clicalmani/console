@@ -16,9 +16,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class MigrateFreshCommand extends Command
 {
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->mkdir($this->root_path . '/database/migrations');
+        $this->mkdir($this->rootPath . '/database/migrations');
         parent::__construct();
     }
 

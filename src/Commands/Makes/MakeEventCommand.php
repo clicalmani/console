@@ -23,9 +23,9 @@ class MakeEventCommand extends Command
 {
     private $events_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->events_path = $this->root_path . '/app/Events';
+        $this->events_path = $this->rootPath . '/app/Events';
         $this->mkdir($this->events_path);
         parent::__construct();
     }

@@ -23,9 +23,9 @@ class RoutineFunctionCommand extends Command
 {
     private $database_path, $functions_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        $this->database_path = $this->root_path . '/database';
+        $this->database_path = $this->rootPath . '/database';
 
         $this->mkdir($this->database_path . '/routines');
         $this->mkdir($this->database_path . '/routines/functions');

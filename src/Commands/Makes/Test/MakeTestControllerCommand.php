@@ -23,13 +23,13 @@ class MakeTestControllerCommand extends Command
 {
     private $controller_path;
 
-    public function __construct(protected $root_path)
+    public function __construct(protected $rootPath)
     {
-        parent::__construct($root_path);
+        parent::__construct($rootPath);
         
-        $this->controller_path = $this->root_path . '/test/Controllers';
-        $this->mkdir($this->root_path . '/test');
-        $this->mkdir($this->root_path . '/test/Controllers');
+        $this->controller_path = $this->rootPath . '/test/Controllers';
+        $this->mkdir($this->rootPath . '/test');
+        $this->mkdir($this->rootPath . '/test/Controllers');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
