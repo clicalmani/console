@@ -1,0 +1,24 @@
+<?php 
+namespace $namespace;
+
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\Response\Response;
+use Clicalmani\Foundation\Test\HasTest;
+
+class $controller extends Controller
+{
+    use HasTest;
+    
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param  int  \$id
+     * @return \Clicalmani\Foundation\Http\Response\Response
+     */
+    public function __invoke(Request \$request, int \$id)
+    {
+        // Logic of your code
+    }
+}
