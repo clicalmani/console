@@ -1,0 +1,33 @@
+<?php 
+namespace $namespace;
+
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\Response\Response;
+
+class $controller extends Controller
+{
+    /**
+     * Show the specified resource.
+     *
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param int \$id
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
+     */
+    public function show(Request \$request, int \$id)
+    {
+        // Logic of your code
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param int \$id
+     * @return \Clicalmani\Foundation\Http\Response\JsonResponse
+     */
+    public function update(Request \$request, int \$id)
+    {
+        // Logic of your code
+    }
+}

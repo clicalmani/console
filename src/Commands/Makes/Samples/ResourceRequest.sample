@@ -1,0 +1,32 @@
+<?php 
+namespace $namespace;
+
+use Clicalmani\Foundation\Http\Requests\Request;
+
+class $request extends Request
+{
+    /**
+     * Authorize the incoming request.
+     * 
+     * @return bool true if yes, false otherwise
+     */
+    public function authorize() : bool 
+    {
+        return true;
+    }
+
+    /**
+     * Define request validation rules. 
+     *
+     * @return void
+     */
+    public function signatures() : void
+    {
+        \$this->merge([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'password|min:8|max:255|confirm:1|nullable',
+            'password_confirm' => 'string|min:8|max:255'
+        ]);
+    }
+}

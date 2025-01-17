@@ -3,6 +3,19 @@ namespace Clicalmani\Console\Logic;
 
 use Clicalmani\Foundation\Sandbox\Sandbox;
 
+/**
+ * This file is part of the tonka project.
+ * 
+ * 
+ * This file contains the MakeController class which is responsible for 
+ * handling the logic related to creating new controllers within the 
+ * application.
+ * 
+ * @package Tonka
+ * @subpackage Logic
+ * @version 4.0
+ * @since 2023
+ */
 class MakeController 
 {
     /**
@@ -84,27 +97,47 @@ class MakeController
     }
 
     /**
+     * Check if singleton controller
+     * 
+     * @return bool
+     */
+    public function isSingleton() : bool
+    {
+        return !!$this->input->getOption('singleton');
+    }
+
+    /**
+     * Check if resource has model.
+     * 
+     * @return bool
+     */
+    public function hasModel() : bool
+    {
+        return !!$this->input->getOption('model');
+    }
+
+    /**
      * Get model resource
      * 
      * @return string|null
      */
-    public function getResource() : string|null
+    public function getResourceModel() : string|null
     {
-        if ($resource = $this->input->getOption('resource')) return "App\\Models\\$resource";
-
-        if ($this->isResource()) $this->output->writeln('Resource name must be specified.');
+        if ($resource = $this->input->getOption('model')) return "App\\Models\\$resource";
 
         return null;
     }
 
     /**
-     * Get resource parameter
+     * Get resource model
      * 
      * @return string|null
      */
     public function getResourceParam() : string|null
     {
-        if ($resource = $this->input->getOption('resource')) return strtolower($resource);
+        if ($this->isResource()) {
+            if ($resource = $this->input->getOption('model')) return strtolower($resource);
+        }
 
         return null;
     }
@@ -116,13 +149,45 @@ class MakeController
      */
     public function getSample() : string
     {
-        $sample = 'Controller.sample';
+        $sample = '';
+        
+        if ($this->isResource()) {
 
-        if ($this->isApi()) $sample = 'ControllerApi.sample';
-        elseif ($this->isResource()) $sample = 'ControllerResource.sample';
-        elseif ($this->isInvokable()) $sample = 'ControllerInvokable.sample';
+            $sample = 'ControllerResource';
 
-        return $sample;
+            if ($this->isApi()) {
+                $sample .= 'Api';
+            }
+
+            if ($this->hasModel()) {
+                $sample .= 'WithModel';
+            }
+        } elseif ($this->isInvokable()) {
+
+            $sample = 'ControllerInvokable';
+
+            if ($this->isApi()) {
+                $sample .= 'Api';
+            }
+        } elseif ($this->isSingleton()) {
+
+            $sample = 'ControllerSingleton';
+
+            if ($this->isApi()) {
+                $sample .= 'Api';
+            }
+        }
+
+        if ( empty($sample) ) {
+
+            $sample = 'Controller';
+
+            if ($this->isApi()) {
+                $sample .= 'Api';
+            }
+        }
+
+        return "$sample.sample";
     }
 
     /**
@@ -146,9 +211,33 @@ class MakeController
                 'controller'  => $class,
                 'resource'    => $resource,
                 'namespace'   => $namespace,
-                'model_class' => $this->getResource(),
+                'model_class' => $this->getResourceModel(),
                 'parameter'   => $this->getResourceParam()
             ]) )
         );
+    }
+
+    /**
+     * Maybe generate form requests
+     * 
+     * @param string $requests_path
+     * @return void
+     */
+    public function maybeGenerateFormRequests(string $requests_path) : void
+    {
+        if ($this->input->getOption('request') AND $resource = $this->input->getOption('model')) {
+
+            $requests = ['Store', 'Update'];
+
+            foreach ($requests as $name) {
+                file_put_contents(
+                    "$requests_path//{$name}{$resource}Request.php", 
+                    ltrim( Sandbox::eval(file_get_contents( $this->sampleDir . "/Samples/ResourceRequest.sample"), [
+                        'request'  => "{$name}{$resource}Request",
+                        'namespace' => "App\\Http\\Requests"
+                    ]) )
+                );
+            }
+        }
     }
 }

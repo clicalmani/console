@@ -9,5 +9,5 @@ class $controller extends Controller
 {
     use HasTest;
 
-    // Your code
+    // Logic of your code
 }

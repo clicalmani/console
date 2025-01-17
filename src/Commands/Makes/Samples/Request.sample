@@ -6,7 +6,7 @@ use Clicalmani\Foundation\Http\Requests\Request;
 class $request extends Request
 {
     /**
-     * Authorize request
+     * Authorize the incoming request
      * 
      * @return bool true if yes, false otherwise
      */
@@ -25,7 +25,7 @@ class $request extends Request
     }
 
     /**
-     * Define request signatures 
+     * Define request validation rules
      *
      * @return void
      */

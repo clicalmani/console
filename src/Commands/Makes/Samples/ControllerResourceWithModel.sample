@@ -1,0 +1,96 @@
+<?php 
+namespace $namespace;
+
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Response\Response;
+use \Clicalmani\Foundation\Resources\View;
+use $model_class;
+
+class $controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function index()
+    {
+        // Implement the resource listing here
+    }
+
+    /**
+     * Create the specified resource in storage.
+     *
+     * @param \\$model_class $$parameter
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function create($resource $$parameter) : View
+    {
+        // Implement the resource create here
+
+        return new View('');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \\$model_class $$parameter
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function store($resource $$parameter)
+    {
+        // Implement the resource storage here
+    }
+
+    /**
+     * Show the specified resource.
+     *
+     * @param \\$model_class $$parameter
+     * @param int \$id
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function show($resource $$parameter, int \$id) : View
+    {
+        // Implement the resource view here
+
+        return new View('');
+    }
+
+    /**
+     * Edit the specified resource.
+     *
+     * @param \\$model_class $$parameter
+     * @param int \$id
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function edit($resource $$parameter, int \$id) : View
+    {
+        // Implement the resource edit here
+
+        return new View('');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \\$model_class $$parameter
+     * @param  int \$id
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function update($resource $$parameter, int \$id)
+    {
+        // Implement the resource update here
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \\$model_class $$parameter
+     * @param int \$id 
+     * @return \Clicalmani\Foundation\Resources\View
+     */
+    public function destroy($resource $$parameter, int \$id)
+    {
+        // Implement the resource destroy here
+    }
+}

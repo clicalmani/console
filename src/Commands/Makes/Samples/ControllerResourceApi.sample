@@ -32,10 +32,9 @@ class $controller extends Controller
      * Show the specified resource.
      *
      * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
-     * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
-    public function show(Request \$request, int \$id)
+    public function show(Request \$request)
     {
         // Implement the resource view here
     }
@@ -44,10 +43,9 @@ class $controller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
-     * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
-    public function update(Request \$request, int \$id)
+    public function update(Request \$request)
     {
         // Implement the resource update here
     }
@@ -56,10 +54,9 @@ class $controller extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
-     * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponse
      */
-    public function destroy(Request \$request, int \$id)
+    public function destroy(Request \$request)
     {
         // Implement the resource destroy here
     }
