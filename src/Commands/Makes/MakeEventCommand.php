@@ -15,8 +15,8 @@ use Clicalmani\Foundation\Sandbox\Sandbox;
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:event',
-    description: 'Create a custom event.',
+    name: 'make:model-event-listener',
+    description: 'Create a custom model event listener',
     hidden: false
 )]
 class MakeEventCommand extends Command
@@ -32,15 +32,16 @@ class MakeEventCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $name = $input->getArgument('name');
+        $listener = $input->getArgument('listener');
 
-        $filename = $this->events_path . '/' . $name . '.php';
+        $filename = $this->events_path . '/' . $listener . '.php';
 
         $success = file_put_contents(
             $filename, 
             ltrim( 
-                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Event.sample"), [
-                    'custom_event' => $name
+                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/ModelEvent.sample"), [
+                    'listener' => $listener,
+                    'event' => $input->getArgument('event')
                 ])
             )
         );
@@ -59,7 +60,8 @@ class MakeEventCommand extends Command
     {
         $this->setHelp('Create a custom event');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Custom event name')
+            new InputArgument('listener', InputArgument::REQUIRED, 'Listener class name.'),
+            new InputArgument('event', InputArgument::REQUIRED, 'Custom event.'),
         ]);
     }
 }

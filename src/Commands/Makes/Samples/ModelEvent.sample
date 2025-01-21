@@ -1,0 +1,23 @@
+<?php
+namespace App\Events;
+
+class $listener extends \Clicalmani\Database\Events\EventListener
+{
+    /**
+     * Event name holder
+     * 
+     * @var string
+     */
+    public const __NAME__ = "$event";
+
+    /**
+     * Handle event
+     * 
+     * @param mixed \$data Event data
+     * @return void
+     */
+    public function handle(mixed \$data) : void
+    {
+        // Logic of your code
+    }
+}
