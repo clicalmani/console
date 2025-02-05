@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\Request;
+use Clicalmani\Foundation\Http\RequestController as Controller;
+use Clicalmani\Foundation\Http\Request;
 use \Clicalmani\Foundation\Resources\View;
 
 class $controller extends Controller
@@ -10,7 +10,7 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Request  \$request
      * @param int \$id
      * @return \\Clicalmani\Foundation\Resources\View
      */
@@ -24,7 +24,7 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Request  \$request
      * @param int \$id
      * @return \\Clicalmani\Foundation\Resources\View
      */
@@ -38,7 +38,7 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Request  \$request
      * @param  int \$id
      * @return \\Clicalmani\Foundation\Resources\View
      */
