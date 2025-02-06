@@ -18,7 +18,7 @@ abstract class Command extends ConsoleCommand
         
         $this->rootPath = dirname( __DIR__, 5);
         
-        $this->container = new SPL_Loader($rootPath ?? $rootPath);
+        $this->container = new SPL_Loader($rootPath);
     }
 
     /**
