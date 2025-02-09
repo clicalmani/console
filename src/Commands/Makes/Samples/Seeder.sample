@@ -2,11 +2,11 @@
 namespace Database\Seeders;
 
 use Clicalmani\Database\Seeders\Seeder;
-use Clicalmani\Database\Traits\DisableSQLEventsTrigger;
+use Clicalmani\Database\Traits\PreventEventsCapturing;
 
 class $seeder extends Seeder 
 {
-    use DisableSQLEventsTrigger;
+    use PreventEventsCapturing;
 
     /**
      * Run the seeder 

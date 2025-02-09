@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Http\RequestController as Controller;
-use Clicalmani\Foundation\Http\Response\Response;
+use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Http\Response;
 use \Clicalmani\Foundation\Resources\View;
 use $model_class;
 

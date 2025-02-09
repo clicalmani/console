@@ -2,12 +2,12 @@
 namespace Database\Seeders;
 
 use Clicalmani\Database\Seeders\Seeder;
-use Clicalmani\Database\Traits\DisableSQLEventsTrigger;
+use Clicalmani\Database\Traits\PreventEventsCapturing;
 use App\Models\\$model;
 
 class $seeder extends Seeder 
 {
-    use DisableSQLEventsTrigger;
+    use PreventEventsCapturing;
     
     /**
      * Run the seeder 
