@@ -14,8 +14,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'test:controller',
-    description: 'Test a controller',
+    name: 'test',
+    description: 'Test controllers',
     hidden: false
 )]
 class TestControllerCommand extends Command

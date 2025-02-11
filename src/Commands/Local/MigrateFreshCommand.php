@@ -27,7 +27,7 @@ class MigrateFreshCommand extends Command
         $filename = $input->getArgument('name');
         $tonka = new \Clicalmani\Foundation\Support\Facades\Tonka;
         $tonka->setOutput($output);
-        $tonka->setDumpFile($input->getOption('dump'));
+        $tonka->setDumpFile($input->getOption('output'));
 
         $db_seed = new ArrayInput([
             'command' => 'db:clear',
@@ -94,7 +94,7 @@ class MigrateFreshCommand extends Command
             new InputArgument('name', InputArgument::REQUIRED, 'Migration file name'),
             new InputOption('seed', null, InputOption::VALUE_NONE, 'Run seeds after migration'),
             new InputOption('routines', null, InputOption::VALUE_NONE, 'Migrate routines'),
-            new InputOption('dump', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file')
+            new InputOption('output', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file')
         ]);
     }
 }
