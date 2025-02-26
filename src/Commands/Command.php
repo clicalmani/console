@@ -75,4 +75,9 @@ abstract class Command extends ConsoleCommand
     {
         return str_pad("$message ", 100, '-');
     }
+
+    protected function getCrunzApplication()
+    {
+        return new \Crunz\Application(app()->config('app.name'), app()->config('app.version'));
+    }
 }

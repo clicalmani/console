@@ -30,7 +30,7 @@ class DBClearCommand extends Command
         $output->writeln('Clearing database');
 
         $filename = $input->getArgument('name');
-        $tonka = new \Clicalmani\Foundation\Support\Facades\Tonka;
+        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
         $tonka->setOutput($output);
 
         try {

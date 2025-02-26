@@ -23,7 +23,7 @@ class MigrateRoutineFunctionsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Foundation\Support\Facades\Tonka;
+        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
         $tonka->setOutput($output);
         return $tonka->routineFunctions() ? Command::SUCCESS: Command::FAILURE;
     }

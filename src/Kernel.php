@@ -34,5 +34,10 @@ class Kernel
       \Clicalmani\Console\Commands\Routines\RoutineFunctionCommand::class,
       \Clicalmani\Console\Commands\Routines\RoutineProcedureCommand::class,
       \Clicalmani\Console\Commands\Routines\RoutineViewCommand::class,
+      \Clicalmani\Console\Commands\Tasks\ListCommand::class,
+      \Clicalmani\Console\Commands\Tasks\RunCommand::class,
+      \Clicalmani\Console\Commands\Tasks\MakeCommand::class,
+      \Clicalmani\Console\Commands\Tasks\DebugCommand::class,
+      \Clicalmani\Console\Commands\Tasks\PublishConfigCommand::class,
    ];
 }

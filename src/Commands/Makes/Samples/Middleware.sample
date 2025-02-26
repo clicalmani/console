@@ -3,23 +3,23 @@ namespace App\Http\Middlewares;
 
 use Clicalmani\Foundation\Http\Middlewares\Middleware;
 use Clicalmani\Foundation\Http\Request;
-use Clicalmani\Foundation\Http\Response\Response;
+use Clicalmani\Foundation\Http\Response;
 
 class $middleware extends Middleware 
 {
     /**
      * Handler
      * 
-     * @param Request \$request Current request object
-     * @param Response \$response Http response
-     * @param callable \$next 
-     * @return int|false
+     * @param \Clicalmani\Foundation\Http\Request \$request Current request object
+     * @param \Clicalmani\Foundation\Http\Response \$response Http response
+     * @param \Closure \$next 
+     * @return \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface
      */
-    public function handle(Request \$request, Response \$response, callable \$next) : int|false
+    public function handle(Request \$request, Response \$response, callable \$next) : \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface
     {
         // ...
 
-        return \$next();
+        return \$next(\$request, \$response);
     }
 
     /**

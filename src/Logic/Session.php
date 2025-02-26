@@ -50,7 +50,7 @@ class Session
             $this->rootPath . '/storage/framework/sessions',
             \RecursiveDirectoryIterator::SKIP_DOTS
         );
-        $filter = new \Clicalmani\Foundation\Misc\RecursiveFilter($iterator);
+        $filter = new \Clicalmani\Foundation\Filesystem\RecursiveFilter($iterator);
         $filter->setPattern('^sess');
 
         foreach (new \RecursiveIteratorIterator($filter) as $file) {
