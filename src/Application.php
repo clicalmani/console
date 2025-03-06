@@ -10,7 +10,7 @@ class Application extends \Symfony\Component\Console\Application
 
     public function make()
     {
-        foreach (Kernel::$kernel as $command) {
+        foreach ($this->app->commands() as $command) {
             $this->add(new $command($this->app->config['paths']['root']));
         }
     }
