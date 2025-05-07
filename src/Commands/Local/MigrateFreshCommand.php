@@ -58,7 +58,7 @@ class MigrateFreshCommand extends Command
             }
         }
 
-        if (false !== $input->getOption('routines')) {
+        if (false !== $input->getOption('create-routines')) {
             $db_seed = new ArrayInput([
                 'command' => 'migrate:functions'
             ]);
@@ -93,7 +93,7 @@ class MigrateFreshCommand extends Command
         $this->setDefinition([
             new InputArgument('name', InputArgument::REQUIRED, 'Migration file name'),
             new InputOption('seed', null, InputOption::VALUE_NONE, 'Run seeds after migration'),
-            new InputOption('routines', null, InputOption::VALUE_NONE, 'Migrate routines'),
+            new InputOption('create-routines', null, InputOption::VALUE_NONE, 'Migrate routines'),
             new InputOption('output', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file')
         ]);
     }
