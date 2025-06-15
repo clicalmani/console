@@ -2,9 +2,8 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Request;
-use Clicalmani\Foundation\Http\Response;
-use \Clicalmani\Foundation\Resources\View;
+use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use \Clicalmani\Foundation\Resources\ViewInterface;
 
 class $controller extends Controller
 {

@@ -2,8 +2,7 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Response;
-use \Clicalmani\Foundation\Resources\View;
+use \Clicalmani\Foundation\Resources\ViewInterface;
 use $model_class;
 
 class $controller extends Controller
@@ -11,7 +10,7 @@ class $controller extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
     public function index()
     {
@@ -22,22 +21,22 @@ class $controller extends Controller
      * Create the specified resource in storage.
      *
      * @param \\$model_class $$parameter
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function create($resource $$parameter) : View
+    public function create($resource $$parameter) : ViewInterface
     {
         // Implement the resource create here
 
-        return new View('');
+        return view('');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \\$model_class $$parameter
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function store($resource $$parameter)
+    public function store($resource $$parameter) : ViewInterface
     {
         // Implement the resource storage here
     }
@@ -47,13 +46,13 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function show($resource $$parameter, int \$id) : View
+    public function show($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource view here
 
-        return new View('');
+        return view('');
     }
 
     /**
@@ -61,13 +60,13 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function edit($resource $$parameter, int \$id) : View
+    public function edit($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource edit here
 
-        return new View('');
+        return view('');
     }
 
     /**
@@ -75,9 +74,9 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param  int \$id
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function update($resource $$parameter, int \$id)
+    public function update($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource update here
     }
@@ -87,9 +86,9 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id 
-     * @return \Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function destroy($resource $$parameter, int \$id)
+    public function destroy($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource destroy here
     }

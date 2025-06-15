@@ -2,7 +2,6 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\RequestController as Controller;
-use Clicalmani\Foundation\Http\Response\Response;
 use Clicalmani\Foundation\Test\HasTest;
 
 class $controller extends Controller

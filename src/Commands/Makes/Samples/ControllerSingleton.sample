@@ -2,47 +2,47 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Request;
-use \Clicalmani\Foundation\Resources\View;
+use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use \Clicalmani\Foundation\Resources\ViewInterface;
 
 class $controller extends Controller
 {
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
      * @param int \$id
-     * @return \\Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function show(Request \$request, int \$id) : View
+    public function show(RequestInterface \$Request, int \$id) : ViewInterface
     {
         // Logic of your code
 
-        return new View('');
+        return view('');
     }
 
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
      * @param int \$id
-     * @return \\Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function edit(Request \$request, int \$id) : View
+    public function edit(RequestInterface \$Request, int \$id) : ViewInterface
     {
         // Logic of your code
 
-        return new View('');
+        return view('');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
      * @param  int \$id
-     * @return \\Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function update(Request \$request, int \$id)
+    public function update(RequestInterface \$Request, int \$id) : ViewInterface
     {
         // Logic of your code
     }

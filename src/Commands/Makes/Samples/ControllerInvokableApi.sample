@@ -2,20 +2,20 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Request;
-use Clicalmani\Foundation\Http\Response;
+use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Http\ResponseInterface;
 
 class $controller extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
      * @param  int  \$id
-     * @return \Clicalmani\Foundation\Http\Response\Response
+     * @return \Clicalmani\Foundation\Http\ResponseInterface
      */
-    public function __invoke(Request \$request, int \$id)
+    public function __invoke(RequestInterface \$Request, int \$id) : ResponseInterface
     {
-        // Logic of your code
+        return response()->json([]);
     }
 }

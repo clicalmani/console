@@ -2,22 +2,22 @@
 namespace $namespace;
 
 use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
-use Clicalmani\Foundation\Http\Request;
-use \Clicalmani\Foundation\Resources\View;
+use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use \Clicalmani\Foundation\Resources\ViewInterface;
 
 class $controller extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\Request  \$request
+     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
      * @param  int  \$id
-     * @return \\Clicalmani\Foundation\Resources\View
+     * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function __invoke(Request \$request, int \$id) : View
+    public function __invoke(RequestInterface \$Request, int \$id) : ViewInterface
     {
         // Logic of your code
 
-        return new View('');
+        return view('');
     }
 }
