@@ -1,10 +1,10 @@
 <?php 
 namespace App\Models;
 
-use Clicalmani\Database\Factory\Models\Model;
+use Clicalmani\Database\Factory\Models\Elegant;
 use Clicalmani\Database\Traits\HasFactory;
 
-class $model_name extends Model
+class $model_name extends Elegant
 {
     use HasFactory;
 

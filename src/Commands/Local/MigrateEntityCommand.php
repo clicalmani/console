@@ -27,7 +27,7 @@ class MigrateEntityCommand extends Command
         $class = "\\App\\Models\\$model";
         
         try {
-            /** @var \Clicalmani\Database\Factory\Models\Model */
+            /** @var \Clicalmani\Database\Factory\Models\Elegant */
             $model = new $class;
             $entity = $model->getEntity();
             $entity->setModel($model);
