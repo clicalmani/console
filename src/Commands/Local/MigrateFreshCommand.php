@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Foundation\Support\Facades\Tonka;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -25,9 +26,8 @@ class MigrateFreshCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $filename = $input->getArgument('name');
-        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
-        $tonka->setOutput($output);
-        $tonka->setDumpFile($input->getOption('output'));
+        Tonka::setOutput($output);
+        Tonka::setDumpFile($input->getOption('output'));
 
         $db_seed = new ArrayInput([
             'command' => 'db:clear',
@@ -39,7 +39,7 @@ class MigrateFreshCommand extends Command
         }
         
         try {
-            $tonka->migrate($filename);
+            Tonka::migrate($filename);
         } catch (\PDOException $e) {
             $output->writeln('Failed');
             $output->writeln($e->getMessage());

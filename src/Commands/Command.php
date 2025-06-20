@@ -1,7 +1,6 @@
 <?php 
 namespace Clicalmani\Console\Commands;
 
-use Clicalmani\Foundation\Container\SPL_Loader;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 
 if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
@@ -10,15 +9,11 @@ if ( ! defined('CONSOLE_MODE_ACTIVE') ) {
 
 abstract class Command extends ConsoleCommand
 {
-    protected $container;
-
     public function __construct(protected $rootPath = null)
     {
         parent::__construct();
         
         $this->rootPath = dirname( __DIR__, 5);
-        
-        $this->container = new SPL_Loader($rootPath);
     }
 
     /**

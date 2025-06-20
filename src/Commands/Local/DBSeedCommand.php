@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Foundation\Support\Facades\Tonka;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -27,12 +28,11 @@ class DBSeedCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
-        $tonka->setOutput($output);
+        Tonka::setOutput($output);
 
         if ($file = $input->getOption('file')) 
-            return $tonka->seed(null, $file) ? Command::SUCCESS: Command::FAILURE;
-        return $tonka->seed($input->getOption('seeder')) ? Command::SUCCESS: Command::FAILURE;
+            return Tonka::seed(null, $file) ? Command::SUCCESS: Command::FAILURE;
+        return Tonka::seed($input->getOption('seeder')) ? Command::SUCCESS: Command::FAILURE;
     }
 
     protected function configure() : void

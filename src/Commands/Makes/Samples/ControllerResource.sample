@@ -1,7 +1,7 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Http\Requests\RequestController as Controller;
+use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
 use Clicalmani\Foundation\Http\Requests\RequestInterface;
 use \Clicalmani\Foundation\Resources\ViewInterface;
 use \Clicalmani\Foundation\Http\RedirectInterface;

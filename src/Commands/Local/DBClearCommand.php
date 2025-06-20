@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Foundation\Support\Facades\Tonka;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,11 +31,10 @@ class DBClearCommand extends Command
         $output->writeln('Clearing database');
 
         $filename = $input->getArgument('name');
-        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
-        $tonka->setOutput($output);
+        Tonka::setOutput($output);
 
         try {
-            $tonka->clearDB($filename);
+            Tonka::clearDB($filename);
         } catch (\PDOException $e) {
             $output->writeln('Failed');
             $output->writeln($e->getMessage());

@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Foundation\Support\Facades\Tonka;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,8 +24,7 @@ class MigrateRoutineFunctionsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $tonka = new \Clicalmani\Foundation\Maker\Logic\Tonka;
-        $tonka->setOutput($output);
-        return $tonka->routineFunctions() ? Command::SUCCESS: Command::FAILURE;
+        Tonka::setOutput($output);
+        return Tonka::routineFunctions() ? Command::SUCCESS: Command::FAILURE;
     }
 }
