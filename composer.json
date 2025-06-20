@@ -6,7 +6,7 @@
         "php": ">=8.0",
         "symfony/console": "^6.3"
     },
-    "license": "proprietary",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Clicalmani\\Console\\": "src/"
