@@ -1,19 +1,17 @@
 <?php
 namespace App\Http\Validators;
 
-use Clicalmani\Validation\Validator;
-
-class $validator extends Validator
+class $validator extends \\$extends
 {
     /**
-     * Validator argument
+     * Rule argument
      * 
      * @var string
      */
     protected string \$argument = "$argument";
 
     /**
-     * Validator options
+     * Rule options
      * 
      * @return array
      */
@@ -28,10 +26,9 @@ class $validator extends Validator
      * Validate input
      * 
      * @param mixed &\$value Input value
-     * @param ?array \$options Validator options
      * @return bool
      */
-    public function validate(mixed &\$value, ?array \$options = [] ) : bool
+    public function validate(mixed &\$value) : bool
     {
         /**
          * Do validation 
@@ -39,5 +36,15 @@ class $validator extends Validator
          */
 
         return true;
+    }
+
+    /**
+     * Gets the custom error message.
+     * 
+     * @return string
+     */
+    public function getErrorMessage() : ?string
+    {
+        return '';
     }
 }

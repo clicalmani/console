@@ -2,6 +2,7 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Foundation\Providers\ValidationServiceProvider;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Input\InputOption;
  */
 #[AsCommand(
     name: 'make:validator',
-    description: 'Create a new input validation service.',
+    description: 'Create a new input validation rule.',
     hidden: false
 )]
 class MakeValidatorCommand extends Command
@@ -33,18 +34,26 @@ class MakeValidatorCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $name = $input->getArgument('name');
+        $validator = $input->getArgument('name');
         $argument = $input->getOption('argument');
+        $sample = "/Samples/Validator.sample";
+        $extends = \Clicalmani\Validation\Rule::class;
 
-        $filename = $this->validators_path . '/' . $name . '.php';
+        if ($override = $input->getOption('override')) {
+            $extends = ValidationServiceProvider::getValidator($override);
+
+            if (!$extends) {
+                $output->writeln(sprintf("Could not find a rule with argument %s", $override));
+                return Command::FAILURE;
+            }
+        }
+
+        $filename = $this->validators_path . '/' . $validator . '.php';
 
         $success = file_put_contents(
             $filename, 
             ltrim( 
-                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/Validator.sample"), [
-                    'validator' => $name,
-                    'argument' => $argument
-                ])
+                Sandbox::eval(file_get_contents( __DIR__ . $sample), compact('validator', 'argument', 'extends'))
             )
         );
 
@@ -60,10 +69,11 @@ class MakeValidatorCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create a new input validation service');
+        $this->setHelp('Create a new input validation rule');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Validator name'),
-            new InputOption('argument', 'arg', InputOption::VALUE_REQUIRED, 'Validator argument', null, ['int', 'float', 'numeric'])
+            new InputArgument('name', InputArgument::REQUIRED, 'Rule name'),
+            new InputOption('argument', 'a', InputOption::VALUE_REQUIRED, 'Validator argument', null, ['int', 'float', 'numeric', 'json', 'json[]']),
+            new InputOption('override', 'o', InputOption::VALUE_REQUIRED, 'Override a builtin rule', null, ['int', 'float', 'numeric', 'json', 'json[]']),
         ]);
     }
 }

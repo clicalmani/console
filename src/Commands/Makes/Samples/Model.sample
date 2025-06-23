@@ -1,9 +1,9 @@
 <?php 
 namespace App\Models;
 
-use Clicalmani\Database\Factory\Models\Elegant;
+use Clicalmani\Foundation\Acme\Model;
 
-class $model_name extends Elegant
+class $model_name extends Model
 {
     /**
      * Model database table 
