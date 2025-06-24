@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Http\RequestInterface;
 use \Clicalmani\Foundation\Resources\ViewInterface;
 
 class $controller extends Controller
@@ -10,7 +10,7 @@ class $controller extends Controller
     /**
      * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param  int  \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */

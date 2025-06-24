@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Http\RequestInterface;
 use $model_class;
 
 class $controller extends Controller

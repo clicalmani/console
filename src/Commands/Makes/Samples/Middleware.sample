@@ -2,7 +2,7 @@
 namespace App\Http\Middlewares;
 
 use Clicalmani\Foundation\Http\Middlewares\Middleware;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Http\RequestInterface;
 use Clicalmani\Foundation\Http\ResponseInterface;
 
 class $middleware extends Middleware 
@@ -10,7 +10,7 @@ class $middleware extends Middleware
     /**
      * Handler
      * 
-     * @param \Clicalmani\Foundation\Http\Requests\RequestInterface \$Request Current RequestInterface; object
+     * @param \Clicalmani\Foundation\Http\RequestInterface \$Request Current RequestInterface; object
      * @param \Clicalmani\Foundation\Http\ResponseInterface \$response Http response
      * @param \Closure \$next 
      * @return \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface

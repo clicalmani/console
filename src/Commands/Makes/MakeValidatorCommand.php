@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Clicalmani\Foundation\Sandbox\Sandbox;
+use Clicalmani\Validation\Validator;
 use Symfony\Component\Console\Input\InputOption;
 
 /**

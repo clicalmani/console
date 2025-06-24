@@ -1,15 +1,15 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Http\RequestInterface;
 
 class $controller extends Controller
 {
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
@@ -21,7 +21,7 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */

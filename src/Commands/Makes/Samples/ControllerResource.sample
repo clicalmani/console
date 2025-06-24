@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Http\RequestInterface;
 use \Clicalmani\Foundation\Resources\ViewInterface;
 use \Clicalmani\Foundation\Http\RedirectInterface;
 
@@ -23,7 +23,7 @@ class $controller extends Controller
     /**
      * Create the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
     public function create(RequestInterface \$Request) : ViewInterface
@@ -36,7 +36,7 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
     public function store(RequestInterface \$Request)
@@ -47,7 +47,7 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
@@ -61,7 +61,7 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
@@ -75,7 +75,7 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param  int \$id
      * @return \Clicalmani\Foundation\Http\RedirectInterface
      */
@@ -87,7 +87,7 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @param int \$id 
      * @return \Clicalmani\Foundation\Http\RedirectInterface
      */

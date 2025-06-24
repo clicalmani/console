@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Support\Facades\RequestController as Controller;
-use Clicalmani\Foundation\Http\Requests\RequestInterface;
+use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Http\RequestInterface;
 
 class $controller extends Controller
 {
@@ -19,7 +19,7 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
     public function store(RequestInterface \$Request)
@@ -30,7 +30,7 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
     public function show(RequestInterface \$Request)
@@ -41,7 +41,7 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
     public function update(RequestInterface \$Request)
@@ -52,7 +52,7 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\Requests\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
     public function destroy(RequestInterface \$Request)
