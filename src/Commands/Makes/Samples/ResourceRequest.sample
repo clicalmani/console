@@ -1,12 +1,12 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Http\RequestInterface;
+use Clicalmani\Foundation\Http\Request;
 
-class \\$Request extends RequestInterface;
+class \\$Request extends Request;
 {
     /**
-     * Authorize the incoming RequestInterface;.
+     * Authorize the incoming Request.
      * 
      * @return bool true if yes, false otherwise
      */
@@ -16,7 +16,7 @@ class \\$Request extends RequestInterface;
     }
 
     /**
-     * Define RequestInterface; validation rules. 
+     * Define Request validation rules. 
      *
      * @return void
      */

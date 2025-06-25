@@ -1,7 +1,7 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller as Controller;
+use Clicalmani\Foundation\Acme\Controller;
 use \Clicalmani\Foundation\Resources\ViewInterface;
 use $model_class;
 

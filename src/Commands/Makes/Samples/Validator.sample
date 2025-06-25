@@ -43,7 +43,7 @@ class $validator extends \\$extends
      * 
      * @return string
      */
-    public function getErrorMessage() : ?string
+    public function message() : ?string
     {
         return '';
     }
