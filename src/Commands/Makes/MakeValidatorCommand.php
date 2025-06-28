@@ -40,11 +40,11 @@ class MakeValidatorCommand extends Command
         $sample = "/Samples/Validator.sample";
         $extends = \Clicalmani\Validation\Rule::class;
 
-        if ($override = $input->getOption('override')) {
-            $extends = ValidationServiceProvider::getValidator($override);
+        if ($input->getOption('override')) {
+            $extends = ValidationServiceProvider::getValidator($argument);
 
             if (!$extends) {
-                $output->writeln(sprintf("Could not find a rule with argument %s", $override));
+                $output->writeln(sprintf("Could not find a rule with argument %s", $argument));
                 return Command::FAILURE;
             }
         }
@@ -74,7 +74,7 @@ class MakeValidatorCommand extends Command
         $this->setDefinition([
             new InputArgument('name', InputArgument::REQUIRED, 'Rule name'),
             new InputOption('argument', 'a', InputOption::VALUE_REQUIRED, 'Validator argument', null, ['int', 'float', 'numeric', 'json', 'json[]']),
-            new InputOption('override', 'o', InputOption::VALUE_REQUIRED, 'Override a builtin rule', null, ['int', 'float', 'numeric', 'json', 'json[]']),
+            new InputOption('override', 'o', InputOption::VALUE_NONE, 'Override a builtin rule'),
         ]);
     }
 }
