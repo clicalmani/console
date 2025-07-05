@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Foundation\Sandbox\Sandbox;
 
 /**
  * Create a new controller
@@ -77,7 +76,7 @@ class MakeControllerCommand extends Command
             new InputOption('resource', null, InputOption::VALUE_NONE, 'Resource Controller'),
             new InputOption('invokable', null, InputOption::VALUE_NONE, 'Invokable Controller'),
             new InputOption('model', null, InputOption::VALUE_REQUIRED, 'Resource Model'),
-            new InputOption('request', null, InputOption::VALUE_NONE, 'Generate form requests'),
+            new InputOption('requests', null, InputOption::VALUE_NONE, 'Generate form requests'),
             new InputOption('singleton', null, InputOption::VALUE_NONE, 'Create a singleton resource controller'),
         ]);
     }

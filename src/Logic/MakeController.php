@@ -225,7 +225,7 @@ class MakeController
      */
     public function maybeGenerateFormRequests(string $requests_path) : void
     {
-        if ($this->input->getOption('request') AND $resource = $this->input->getOption('model')) {
+        if ($this->input->getOption('requests') AND $resource = $this->input->getOption('model')) {
 
             $requests = ['Store', 'Update'];
 

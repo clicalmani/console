@@ -3,7 +3,7 @@ namespace $namespace;
 
 use Clicalmani\Foundation\Http\Request;
 
-class \\$Request extends Request;
+class $request extends Request
 {
     /**
      * Authorize the incoming Request.
@@ -25,8 +25,8 @@ class \\$Request extends Request;
         \$this->merge([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'password|min:8|max:255|confirm:1|nullable',
-            'password_confirm' => 'string|min:8|max:255'
+            'password' => 'required|password|min:8|max:255|confirmed:1|hash:1',
+            'password_confirmation' => 'sometimes|required|string|min:8|max:255'
         ]);
     }
 }

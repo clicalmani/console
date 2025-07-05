@@ -12,9 +12,11 @@ class $controller extends Controller
      *
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function index()
+    public function index() : ViewInterface
     {
         // Implement the resource listing here
+
+        return view('');
     }
 
     /**
@@ -39,6 +41,8 @@ class $controller extends Controller
     public function store($resource $$parameter) : ViewInterface
     {
         // Implement the resource storage here
+
+        return view('');
     }
 
     /**
@@ -79,6 +83,8 @@ class $controller extends Controller
     public function update($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource update here
+
+        return view('');
     }
 
     /**
@@ -91,5 +97,7 @@ class $controller extends Controller
     public function destroy($resource $$parameter, int \$id) : ViewInterface
     {
         // Implement the resource destroy here
+
+        return view('');
     }
 }
