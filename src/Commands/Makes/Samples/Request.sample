@@ -3,7 +3,7 @@ namespace $namespace;
 
 use Clicalmani\Foundation\Http\Request;
 
-class \\$Request extends Request;
+class \\$request extends Request;
 {
     /**
      * Authorize the incoming RequestInterface;

@@ -23,10 +23,10 @@ class $controller extends Controller
     /**
      * Create the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function create(RequestInterface \$Request) : ViewInterface
+    public function create(RequestInterface \$request) : ViewInterface
     {
         // Implement the resource creation code
 
@@ -36,10 +36,10 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function store(RequestInterface \$Request)
+    public function store(RequestInterface \$request)
     {
         // Implement the resource storing code
     }
@@ -47,11 +47,11 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function show(RequestInterface \$Request, int \$id) : ViewInterface
+    public function show(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Implement the resource view code
 
@@ -61,11 +61,11 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function edit(RequestInterface \$Request, int \$id) : ViewInterface
+    public function edit(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Implement the resource edit code
 
@@ -75,11 +75,11 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param  int \$id
      * @return \Clicalmani\Foundation\Http\RedirectInterface
      */
-    public function update(RequestInterface \$Request, int \$id) : RedirectInterface
+    public function update(RequestInterface \$request, int \$id) : RedirectInterface
     {
         return redirect('/');
     }
@@ -87,11 +87,11 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id 
      * @return \Clicalmani\Foundation\Http\RedirectInterface
      */
-    public function destroy(RequestInterface \$Request, int \$id) : RedirectInterface
+    public function destroy(RequestInterface \$request, int \$id) : RedirectInterface
     {
         return redirect('/');
     }

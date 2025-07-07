@@ -9,11 +9,11 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function show(RequestInterface \$Request, int \$id) 
+    public function show(RequestInterface \$request, int \$id) 
     {
         // Logic of your code
     }
@@ -21,11 +21,11 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function update(RequestInterface \$Request, int \$id) 
+    public function update(RequestInterface \$request, int \$id) 
     {
         // Logic of your code
     }

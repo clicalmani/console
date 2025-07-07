@@ -19,10 +19,10 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function store(RequestInterface \$Request)
+    public function store(RequestInterface \$request)
     {
         // Implement the resource storage here
     }
@@ -30,10 +30,10 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function show(RequestInterface \$Request)
+    public function show(RequestInterface \$request)
     {
         // Implement the resource view here
     }
@@ -41,10 +41,10 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function update(RequestInterface \$Request)
+    public function update(RequestInterface \$request)
     {
         // Implement the resource update here
     }
@@ -52,10 +52,10 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
      */
-    public function destroy(RequestInterface \$Request)
+    public function destroy(RequestInterface \$request)
     {
         // Implement the resource destroy here
     }

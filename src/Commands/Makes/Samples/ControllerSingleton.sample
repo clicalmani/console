@@ -10,11 +10,11 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function show(RequestInterface \$Request, int \$id) : ViewInterface
+    public function show(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Logic of your code
 
@@ -24,11 +24,11 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function edit(RequestInterface \$Request, int \$id) : ViewInterface
+    public function edit(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Logic of your code
 
@@ -38,11 +38,11 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param  int \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function update(RequestInterface \$Request, int \$id) : ViewInterface
+    public function update(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Logic of your code
     }

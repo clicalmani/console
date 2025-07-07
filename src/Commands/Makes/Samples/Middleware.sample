@@ -10,16 +10,16 @@ class $middleware extends Middleware
     /**
      * Handler
      * 
-     * @param \Clicalmani\Foundation\Http\RequestInterface \$Request Current RequestInterface; object
+     * @param \Clicalmani\Foundation\Http\RequestInterface \$request Current RequestInterface; object
      * @param \Clicalmani\Foundation\Http\ResponseInterface \$response Http response
      * @param \Closure \$next 
      * @return \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface
      */
-    public function handle(RequestInterface \$Request, ResponseInterface \$response, \Closure \$next) : \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface
+    public function handle(RequestInterface \$request, ResponseInterface \$response, \Closure \$next) : \Clicalmani\Foundation\Http\Response|\Clicalmani\Foundation\Http\RedirectInterface
     {
         // ...
 
-        return \$next(\$Request, \$response);
+        return \$next(\$request, \$response);
     }
 
     /**

@@ -10,11 +10,11 @@ class $controller extends Controller
     /**
      * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param  int  \$id
      * @return \Clicalmani\Foundation\Http\ResponseInterface
      */
-    public function __invoke(RequestInterface \$Request, int \$id) : ResponseInterface
+    public function __invoke(RequestInterface \$request, int \$id) : ResponseInterface
     {
         return response()->json([]);
     }

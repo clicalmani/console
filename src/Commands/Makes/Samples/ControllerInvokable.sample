@@ -10,11 +10,11 @@ class $controller extends Controller
     /**
      * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$Request
+     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @param  int  \$id
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function __invoke(RequestInterface \$Request, int \$id) : ViewInterface
+    public function __invoke(RequestInterface \$request, int \$id) : ViewInterface
     {
         // Logic of your code
 
