@@ -8,7 +8,7 @@ class $validator extends \\$extends
      * 
      * @var string
      */
-    protected string \$argument = "$argument";
+    protected static string \$argument = "$argument";
 
     /**
      * Rule options
