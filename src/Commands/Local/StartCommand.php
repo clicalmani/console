@@ -39,7 +39,7 @@ class StartCommand extends Command
         }
 
         $port = $input->getOption('port');
-        $success = shell_exec("php -S localhost:$port server.php");
+        $success = `php -S localhost:{$port} server.php`;
         
         if ($success) return Command::SUCCESS;
 
