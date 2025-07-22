@@ -89,8 +89,9 @@ class MakeModelCommand extends Command
 
     private function findEntity(string $name)
     {
-        $dir = new \RecursiveDirectoryIterator($this->entities_path);
-        $filter = new RecursiveFilter($dir);
+        $filter = new RecursiveFilter(
+            new \RecursiveDirectoryIterator($this->entities_path)
+        );
         $filter->setPattern("\\.php$");
         $filter->setFilter(["$name.php"]);
         
