@@ -38,8 +38,9 @@ class StartCommand extends Command
             }
         }
 
+        $host = $input->getOption('host');
         $port = $input->getOption('port');
-        $success = `php -S localhost:{$port} server.php`;
+        $success = `php -S {$host}:{$port} server.php`;
         
         if ($success) return Command::SUCCESS;
 
@@ -49,7 +50,8 @@ class StartCommand extends Command
     protected function configure() : void
     {
         $this->setHelp('This command start the web server');
-        $this->setDefinition([
+            $this->setDefinition([
+            new InputOption('host', null, InputOption::VALUE_REQUIRED, 'Host address', 'localhost'),
             new InputOption('port', 'p', InputOption::VALUE_REQUIRED, 'Host port', 8000),
             new InputOption('worker', 'w', InputOption::VALUE_NONE, 'Start a worker command'),
             new InputOption('file', 'f', InputOption::VALUE_REQUIRED, 'Worker file')
