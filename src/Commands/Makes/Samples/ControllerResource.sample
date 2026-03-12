@@ -26,7 +26,7 @@ class $controller extends Controller
      * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
      * @return \Clicalmani\Foundation\Resources\ViewInterface
      */
-    public function create(RequestInterface \$request) : ViewInterface
+    public function create() : ViewInterface
     {
         // Implement the resource creation code
 

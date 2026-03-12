@@ -29,7 +29,7 @@ class RoutineFunctionCommand extends Command
 
         $this->mkdir($this->database_path . '/routines');
         $this->mkdir($this->database_path . '/routines/functions');
-
+        $this->functions_path = $this->database_path . '/routines/functions';
         parent::__construct();
     }
 

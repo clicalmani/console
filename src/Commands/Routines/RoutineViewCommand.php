@@ -29,7 +29,7 @@ class RoutineViewCommand extends Command
 
         $this->mkdir($this->database_path . '/routines');
         $this->mkdir($this->database_path . '/routines/views');
-
+        
         $this->views_path = $this->database_path . '/routines/views';
 
         parent::__construct();

@@ -3,7 +3,7 @@ namespace Clicalmani\Console\Commands\Local;
 
 use App\Providers\SessionServiceProvider;
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Database\DB;
+use Clicalmani\Foundation\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,21 +22,26 @@ class MigrateSessionTableCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        try {
-            $session_table = env('DB_TABLE_PREFIX', '') . SessionServiceProvider::getTable();
-            $sql = "CREATE TABLE IF NOT EXISTS $session_table (`sess_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " . 
-                   "`id` VARCHAR(32) NOT NULL, `access` VARCHAR(100) NOT NULL, `data` LONGTEXT, UNIQUE KEY `id_UNIQUE` (`id`))";
-            DB::getPdo()->query($sql);
+        if ($connections = config('database.connections') AND $default = config('database.default')) {
+            $collation = $connections[$default]['collation'];
+            $charset = $connections[$default]['charset'];
 
-            $output->writeln("Session table $session_table created successfully.");
+            try {
+                $session_table = env('DB_TABLE_PREFIX', '') . SessionServiceProvider::getTable();
+                $sql = "CREATE TABLE IF NOT EXISTS $session_table (`sess_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " . 
+                    "`id` VARCHAR(32) NOT NULL, `access` VARCHAR(100) NOT NULL, `data` LONGTEXT, UNIQUE KEY `id_UNIQUE` (`id`)) DEFAULT COLLATE = $collation DEFAULT CHARACTER SET = $charset";
+                DB::getPdo()->query($sql);
 
-            return Command::SUCCESS;
-        } catch (\PDOException $e) {
-            $output->writeln('Failed');
-            $output->writeln($e->getMessage());
+                $output->writeln("Session table $session_table created successfully.");
 
-            return Command::FAILURE;
+                return Command::SUCCESS;
+            } catch (\PDOException $e) {
+                $output->writeln('Failed');
+                $output->writeln($e->getMessage());
+            }
         }
+
+        return Command::FAILURE;
     }
 
     protected function configure() : void
