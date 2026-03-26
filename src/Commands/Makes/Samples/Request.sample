@@ -3,14 +3,14 @@ namespace $namespace;
 
 use Clicalmani\Foundation\Http\Request;
 
-class \\$request extends Request;
+class $request extends Request
 {
     /**
      * Authorize the incoming RequestInterface;
      * 
      * @return bool true if yes, false otherwise
      */
-    function authorize() : bool {
+    public function authorize() : bool {
         return true;
     }
 
@@ -19,7 +19,7 @@ class \\$request extends Request;
      *
      * @return void
      */
-    function prepareForValidation() : void
+    public function prepareForValidation() : void
     {
         // Do Something
     }
@@ -29,7 +29,7 @@ class \\$request extends Request;
      *
      * @return void
      */
-    function signatures() : void
+    public function signatures() : void
     {
         \$this->merge([
             // Signatures

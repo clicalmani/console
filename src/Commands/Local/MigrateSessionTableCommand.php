@@ -1,7 +1,6 @@
 <?php
 namespace Clicalmani\Console\Commands\Local;
 
-use App\Providers\SessionServiceProvider;
 use Clicalmani\Console\Commands\Command;
 use Clicalmani\Foundation\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -27,7 +26,7 @@ class MigrateSessionTableCommand extends Command
             $charset = $connections[$default]['charset'];
 
             try {
-                $session_table = env('DB_TABLE_PREFIX', '') . SessionServiceProvider::getTable();
+                $session_table = env('DB_TABLE_PREFIX', '') . \App\Providers\SessionServiceProvider::getTable();
                 $sql = "CREATE TABLE IF NOT EXISTS $session_table (`sess_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " . 
                     "`id` VARCHAR(32) NOT NULL, `access` VARCHAR(100) NOT NULL, `data` LONGTEXT, UNIQUE KEY `id_UNIQUE` (`id`)) DEFAULT COLLATE = $collation DEFAULT CHARACTER SET = $charset";
                 DB::getPdo()->query($sql);

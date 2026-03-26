@@ -24,6 +24,7 @@ class MigrateEntityCommand extends Command
     {
         $model = $input->getArgument('model');
         $dump = $input->getOption('dump');
+        $alter = $input->getOption('alter');
         $class = "\\App\\Models\\$model";
         
         try {
@@ -34,7 +35,7 @@ class MigrateEntityCommand extends Command
 
             if ($dump) $entity->migrate(false, $dump);
             else {
-                $entity->drop();
+                if (!$alter) $entity->drop();
                 $entity->migrate();
             }
         } catch (\PDOException $e) {
@@ -44,6 +45,8 @@ class MigrateEntityCommand extends Command
             return Command::FAILURE;
         }
 
+        $output->writeln('Command executed successfully!');
+
         return Command::SUCCESS;
     }
 
@@ -52,7 +55,8 @@ class MigrateEntityCommand extends Command
         $this->setHelp('Migrate a single entity');
         $this->setDefinition([
             new InputArgument('model', InputArgument::REQUIRED, 'Model name of the entity to migrate'),
-            new InputOption('dump', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file')
+            new InputOption('dump', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file'),
+            new InputOption('alter', null, InputOption::VALUE_NONE, 'Alter a single entity')
         ]);
     }
 }
