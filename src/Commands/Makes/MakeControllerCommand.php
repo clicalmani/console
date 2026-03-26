@@ -30,12 +30,13 @@ class MakeControllerCommand extends Command
         parent::__construct($rootPath);
         $this->controllers_path = $this->rootPath . '/app/Http/Controllers';
         $this->requests_path = $this->rootPath . '/app/Http/Requests';
-        $this->mkdir($this->controllers_path);
-        $this->mkdir($this->requests_path);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->controllers_path);
+        $this->mkdir($this->requests_path);
+        
         $controller = new MakeController( __DIR__ );
 
         $controller->setInput($input);

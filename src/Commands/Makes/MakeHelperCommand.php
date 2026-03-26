@@ -26,12 +26,13 @@ class MakeHelperCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->providers_path = $this->rootPath . '/app/Providers';
-        $this->mkdir($this->providers_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->providers_path);
+        
         $name = $input->getArgument('name');
 
         $filename = $this->providers_path . '/' . $name . '.php';

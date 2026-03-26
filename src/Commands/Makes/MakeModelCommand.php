@@ -29,13 +29,14 @@ class MakeModelCommand extends Command
     {
         $this->models_path = $this->rootPath . '/app/Models';
         $this->entities_path = $this->rootPath . '/database/entities';
-        $this->mkdir($this->models_path);
-        $this->mkdir($this->entities_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->models_path);
+        $this->mkdir($this->entities_path);
+        
         $model_name   = $input->getArgument('name');
         $entity_class = $this->findEntity("{$model_name}Entity");
 

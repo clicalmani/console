@@ -26,12 +26,13 @@ class MakeEventCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->events_path = $this->rootPath . '/app/Events';
-        $this->mkdir($this->events_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->events_path);
+        
         $listener = $input->getArgument('listener');
 
         $filename = $this->events_path . '/' . $listener . '.php';

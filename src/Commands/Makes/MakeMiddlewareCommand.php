@@ -26,12 +26,13 @@ class MakeMiddlewareCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->middlewares_path = $this->rootPath . '/app/Http/Middlewares';
-        $this->mkdir($this->middlewares_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->middlewares_path);
+        
         $name = $input->getArgument('name');
 
         $filename = $this->middlewares_path . '/' . $name . '.php';

@@ -26,12 +26,13 @@ class MakeMigrationCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->migrations_path = $this->rootPath . '/database/migrations';
-        $this->mkdir($this->migrations_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->migrations_path);
+        
         $table    = $input->getArgument('table');
         $filename = $this->migrations_path . '/' . date('Y_m_d') . '_' . time() . '_' . strtolower($table) . '.php';
 

@@ -60,7 +60,7 @@ abstract class Command extends ConsoleCommand
     protected function mkdir(string $pathname, int $mode = 0777, ?callable $callback = null) : void
     {
         if ( ! file_exists($pathname) ) {
-            mkdir($pathname, $mode);
+            @ mkdir($pathname, $mode);
 
             if (null !== $callback) $callback();
         }
