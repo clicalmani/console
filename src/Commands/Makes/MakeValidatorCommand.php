@@ -29,13 +29,12 @@ class MakeValidatorCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->validators_path = $this->rootPath . '/app/Http/Validators';
+        $this->mkdir($this->validators_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $this->mkdir($this->validators_path);
-        
         $validator = $input->getArgument('name');
         $argument = $input->getOption('argument');
         $sample = "/Samples/Validator.sample";
