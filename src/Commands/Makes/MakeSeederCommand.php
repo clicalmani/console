@@ -27,12 +27,13 @@ class MakeSeederCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->seeders_path = $this->rootPath . '/database/seeders';
-        $this->mkdir($this->seeders_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->seeders_path);
+        
         $seeder  = $input->getArgument('name');
         
         $filename = $this->seeders_path . '/' . $seeder . '.php';

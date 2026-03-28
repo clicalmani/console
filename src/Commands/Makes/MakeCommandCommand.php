@@ -27,12 +27,13 @@ class MakeCommandCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->commands_path = $this->rootPath . '/app/Commands';
-        $this->mkdir($this->commands_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->commands_path);
+        
         $name = $input->getArgument('name');
         $id   = $input->getArgument('id');
         $desc = $input->getOption('description') ?? '';

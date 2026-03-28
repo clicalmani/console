@@ -19,12 +19,13 @@ class MigrateFreshCommand extends Command
 {
     public function __construct(protected $rootPath)
     {
-        $this->mkdir($this->rootPath . '/database/migrations');
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->rootPath . '/database/migrations');
+        
         $filename = $input->getArgument('name');
         Tonka::setOutput($output);
         Tonka::setDumpFile($input->getOption('output'));

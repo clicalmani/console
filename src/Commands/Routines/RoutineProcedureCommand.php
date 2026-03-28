@@ -28,9 +28,6 @@ class RoutineProcedureCommand extends Command
     {
         $this->database_path = $this->rootPath . '/database';
 
-        $this->mkdir($this->database_path . '/routines');
-        $this->mkdir($this->database_path . '/routines/procedures');
-
         $this->procedures_path = $this->database_path . '/routines/procedures';
 
         parent::__construct();
@@ -38,6 +35,9 @@ class RoutineProcedureCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->database_path . '/routines');
+        $this->mkdir($this->database_path . '/routines/procedures');
+        
         $procedure   = $input->getArgument('name');
         $filename = $this->procedures_path . "/$procedure";
         

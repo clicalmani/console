@@ -27,11 +27,12 @@ class MakeRequestCommand extends Command
     {
         parent::__construct($rootPath);
         $this->requests_path = $this->rootPath . '/app/Http/Requests';
-        $this->mkdir($this->requests_path);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->requests_path);
+        
         $name = $input->getArgument('name');
         $path = $this->requests_path . ($this->getPath($name) ? '/' . $this->getPath($name): '');
         

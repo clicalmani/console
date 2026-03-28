@@ -26,9 +26,6 @@ class RoutineViewCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->database_path = $this->rootPath . '/database';
-
-        $this->mkdir($this->database_path . '/routines');
-        $this->mkdir($this->database_path . '/routines/views');
         
         $this->views_path = $this->database_path . '/routines/views';
 
@@ -37,6 +34,9 @@ class RoutineViewCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->database_path . '/routines');
+        $this->mkdir($this->database_path . '/routines/views');
+        
         $view     = $input->getArgument('name');
         $filename = $this->views_path . "/$view";
         

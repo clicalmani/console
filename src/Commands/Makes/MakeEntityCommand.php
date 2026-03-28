@@ -26,12 +26,13 @@ class MakeEntityCommand extends Command
     public function __construct(protected $rootPath)
     {
         $this->entities_path = $this->rootPath . '/database/entities';
-        $this->mkdir($this->entities_path);
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
+        $this->mkdir($this->entities_path);
+        
         $name   = $input->getArgument('name');
 
         $filename = $this->entities_path . '/' . $name . '.php';
