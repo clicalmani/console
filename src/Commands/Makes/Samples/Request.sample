@@ -6,26 +6,7 @@ use Clicalmani\Foundation\Http\Request;
 class $request extends Request
 {
     /**
-     * Authorize the incoming RequestInterface;
-     * 
-     * @return bool true if yes, false otherwise
-     */
-    public function authorize() : bool {
-        return true;
-    }
-
-    /**
-     * Prepare RequestInterface; for validation
-     *
-     * @return void
-     */
-    public function prepareForValidation() : void
-    {
-        // Do Something
-    }
-
-    /**
-     * Define RequestInterface; validation rules
+     * Define Request validation rules
      *
      * @return void
      */
