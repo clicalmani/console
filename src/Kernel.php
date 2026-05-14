@@ -35,6 +35,9 @@ class Kernel
       \Clicalmani\Console\Commands\Routines\RoutineFunctionCommand::class,
       \Clicalmani\Console\Commands\Routines\RoutineProcedureCommand::class,
       \Clicalmani\Console\Commands\Routines\RoutineViewCommand::class,
-      \Clicalmani\Console\Commands\Tasks\ConsumeCommand::class,
+      \Clicalmani\Console\Commands\Messenger\ConsumeCommand::class,
+      \Clicalmani\Console\Commands\Messenger\KillCommand::class,
+      \Clicalmani\Console\Commands\Scheduler\ScheduleCommand::class,
+      \Clicalmani\Console\Commands\Scheduler\KillCommand::class,
    ];
 }

@@ -30,7 +30,13 @@ class StorageLinkCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        if (FALSE !== symlink($this->storage_path, $this->public_path)) return Command::SUCCESS;
-        return Command::FAILURE;
+        if ( storage()->exists($this->public_path . '/storage') ) {
+            $output->writeln('<comment>Le lien symbolique existe déjà.</comment>');
+            return Command::SUCCESS;
+        }
+
+        storage()->symlink($this->storage_path, $this->public_path);
+
+        return Command::SUCCESS;
     }
 }
