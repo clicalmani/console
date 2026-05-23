@@ -1,0 +1,14 @@
+<?php
+namespace App\Listeners;
+
+use App\Events\\$eventClass;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+
+#[AsEventListener]
+class $class
+{
+    public function __invoke($eventClass \$event)
+    {
+        throw new \Exception('Not implemented');
+    }
+}

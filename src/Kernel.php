@@ -24,6 +24,7 @@ class Kernel
       \Clicalmani\Console\Commands\Makes\MakeSeederCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeHelperCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEventCommand::class,
+      \Clicalmani\Console\Commands\Makes\MakeEventListener::class,
       \Clicalmani\Console\Commands\Makes\MakeCommandCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeValidatorCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEntityCommand::class,
