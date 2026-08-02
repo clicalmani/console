@@ -2,51 +2,53 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Foundation\Sandbox\Sandbox;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Clicalmani\Foundation\Sandbox\Sandbox;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Make migration command
+ * EventListener Command
  * 
  * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'make:migration',
-    description: 'Create a database migration.',
+    name: 'event:subscriber',
+    description: 'Create an event subscriber class.',
     hidden: false
 )]
-class MakeMigrationCommand extends Command
+class MakeEventSubscriberCommand extends Command
 {
-    private $manifests_path;
+    private $subscribersPath;
 
     public function __construct(protected $rootPath)
     {
-        $this->manifests_path = $this->rootPath . '/database/manifests';
+        $this->subscribersPath = $this->rootPath . '/app/EventSubscribers';
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $this->mkdir($this->manifests_path);
+        $this->mkdir($this->subscribersPath);
         
-        $table    = $input->getArgument('table');
-        $filename = $this->manifests_path . '/' . date('Y_m_d') . '_' . time() . '_' . strtolower($table) . '.php';
+        $name = $input->getArgument('name');
+
+        $filename = $this->subscribersPath . '/' . $name . '.php';
 
         $success = file_put_contents(
             $filename, 
-            ltrim( Sandbox::eval(file_get_contents( __DIR__ . '/Samples/Migration.sample'), [
-                'table'   => $table
-            ]) )
+            ltrim( 
+                Sandbox::eval(file_get_contents( __DIR__ . "/Samples/EventSubscriber.sample"), [
+                    'class' => $name,
+                ])
+            )
         );
 
         if ($success) {
-
             $output->writeln('Command executed successfully');
-
             return Command::SUCCESS;
         }
 
@@ -57,7 +59,9 @@ class MakeMigrationCommand extends Command
 
     protected function configure() : void
     {
-        $this->setHelp('Create a new migration for a database table.');
-        $this->addArgument('table', InputArgument::REQUIRED, 'Database table name');
+        $this->setHelp('Create a custom command');
+        $this->setDefinition([
+            new InputArgument('name', InputArgument::REQUIRED, 'Subscriber class name'),
+        ]);
     }
 }

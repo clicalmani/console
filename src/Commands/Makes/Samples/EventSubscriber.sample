@@ -1,0 +1,84 @@
+<?php
+
+namespace App\EventSubscribers;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Messenger\Event\WorkerMessageFailedEvent;
+use Symfony\Component\Messenger\Event\WorkerMessageHandledEvent;
+use Symfony\Component\Messenger\Event\WorkerMessageReceivedEvent;
+use Symfony\Component\Messenger\Stamp\RedeliveryStamp;
+
+class $class implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            WorkerMessageReceivedEvent::class => 'onMessageReceived',
+            WorkerMessageHandledEvent::class  => 'onMessageHandled',
+            WorkerMessageFailedEvent::class   => 'onMessageFailed',
+        ];
+    }
+
+    /**
+     * Triggered when the worker receives a message, before processing.
+     */
+    public function onMessageReceived(WorkerMessageReceivedEvent \$event): void
+    {
+        \$message = \$event->getEnvelope()->getMessage();
+
+        // Retrieve the redelivery stamp if it exists (retry N)
+        /** @var RedeliveryStamp|null \$redelivery */
+        \$redelivery = \$event->getEnvelope()->last(RedeliveryStamp::class);
+
+        logger()->info('📨 Message received', [
+            'class'       => get_class(\$message),
+            'retry'       => \$redelivery ? \$redelivery->getRetryCount() : 0,
+            'from_failed' => \$redelivery !== null,
+        ]);
+    }
+
+    /**
+     * Triggered after successful processing.
+     */
+    public function onMessageHandled(WorkerMessageHandledEvent \$event): void
+    {
+        \$message = \$event->getEnvelope()->getMessage();
+
+        logger()->info('✅ Message successfully processed', [
+            'class' => get_class(\$message),
+        ]);
+    }
+
+    /**
+     * Triggered when a handler throws an exception.
+     */
+    public function onMessageFailed(WorkerMessageFailedEvent \$event): void
+    {
+        \$message   = \$event->getEnvelope()->getMessage();
+        \$throwable = \$event->getThrowable();
+
+        /** @var RedeliveryStamp|null $redelivery */
+        \$redelivery = \$event->getEnvelope()->last(RedeliveryStamp::class);
+        \$retryCount = \$redelivery ? \$redelivery->getRetryCount() : 0;
+
+        \$context = [
+            'class'      => get_class(\$message),
+            'error'      => \$throwable->getMessage(),
+            'file'       => \$throwable->getFile(),
+            'line'       => \$throwable->getLine(),
+            'retry'      => \$retryCount,
+            'will_retry' => \$event->willRetry(),
+        ];
+
+        if (\$event->willRetry()) {
+            // Temporary failure, a retry has been scheduled
+            logger()->warning('⚠️ Message failed — retry scheduled', \$context);
+        } else {
+            // Permanent failure — the message is being sent to the failed transport
+            logger()->error('🔴 Message permanently failed — sent to quarantine', \$context);
+
+            // You can add a team alert here (email, Slack, etc.)
+            // \$this->notifyTeam(\$context);
+        }
+    }
+}

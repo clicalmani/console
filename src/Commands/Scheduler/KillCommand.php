@@ -10,8 +10,7 @@ use Symfony\Component\Scheduler\Scheduler;
 
 /**
  * Kill
- * 
- * @package Clicalmani\Console
+ * * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
@@ -30,31 +29,31 @@ class KillCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        // 1. Récupérer la crontab actuelle
+        // 1. Retrieve the current crontab
         $currentCrontab = shell_exec('crontab -l 2>/dev/null') ?: '';
-        $taskScript = "worker.php"; // Le mot-clé pour identifier la ligne
+        $taskScript = "worker.php"; // The keyword used to identify the line
 
         if (strpos($currentCrontab, $taskScript) === false) {
-            $output->writeln('<comment>Le worker n\'est pas configuré dans la crontab.</comment>');
+            $output->writeln('<comment>The worker is not configured in the crontab.</comment>');
         } else {
-            // 2. Filtrer pour ENLEVER la ligne du worker
+            // 2. Filter out the worker line
             $lines = explode(PHP_EOL, trim($currentCrontab));
             $newLines = array_filter($lines, function($line) use ($taskScript) {
                 return strpos($line, $taskScript) === false;
             });
 
-            // 3. Réinstaller la crontab nettoyée
+            // 3. Reinstall the cleaned crontab
             $tmpFile = tempnam(sys_get_temp_dir(), 'cron_clean');
             file_put_contents($tmpFile, implode(PHP_EOL, $newLines) . PHP_EOL);
             exec("crontab $tmpFile");
             unlink($tmpFile);
 
-            $output->writeln('<info>Ligne supprimée de la crontab.</info>');
+            $output->writeln('<info>Line removed from crontab.</info>');
         }
 
-        // 4. MAINTENANT, on tue les processus restants
+        // 4. NOW, kill any remaining active processes
         exec("pkill -f 'worker.php'");
-        $output->writeln('<info>Processus PHP tués.</info>');
+        $output->writeln('<info>PHP processes killed.</info>');
 
         return Command::SUCCESS;
     }

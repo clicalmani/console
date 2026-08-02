@@ -24,11 +24,11 @@ class MigrateFreshCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $this->mkdir($this->rootPath . '/database/migrations');
+        $this->mkdir($this->rootPath . '/database/manifests');
         
-        $filename = $input->getArgument('name');
+        $filename = $input->getOption('manifest') ?? 'manifest';
         Tonka::setOutput($output);
-        Tonka::setDumpFile($input->getOption('output'));
+        Tonka::setDumpFile($input->getOption('dump'));
 
         $db_seed = new ArrayInput([
             'command' => 'db:clear',
@@ -42,8 +42,8 @@ class MigrateFreshCommand extends Command
         try {
             Tonka::migrate($filename);
         } catch (\PDOException $e) {
-            $output->writeln('Failed');
-            $output->writeln($e->getMessage());
+            $output->writeln('<error>Failed</error>');
+            $output->writeln("<error>{$e->getMessage()}</error>");
 
             return Command::FAILURE;
         }
@@ -92,10 +92,10 @@ class MigrateFreshCommand extends Command
     {
         $this->setHelp('Run a fresh database migration');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Migration file name'),
-            new InputOption('seed', null, InputOption::VALUE_NONE, 'Run seeds after migration'),
-            new InputOption('create-routines', null, InputOption::VALUE_NONE, 'Migrate routines'),
-            new InputOption('output', null, InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a file')
+            new InputOption('manifest', 'm', InputOption::VALUE_REQUIRED, 'Migration manifest file', 'manifest'),
+            new InputOption('seed', 's', InputOption::VALUE_NONE, 'Run seeds after migration'),
+            new InputOption('create-routines', 'r', InputOption::VALUE_NONE, 'Migrate routines'),
+            new InputOption('dump', 'd', InputOption::VALUE_REQUIRED, 'Dump the generated SQL into a dump file (without extension)')
         ]);
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'migrate:session-table',
+    name: 'session:migrate',
     description: 'Migrate session table.',
     hidden: false
 )]
@@ -28,7 +28,7 @@ class MigrateSessionTableCommand extends Command
             try {
                 $session_table = env('DB_TABLE_PREFIX', '') . \App\Providers\SessionServiceProvider::getTable();
                 $sql = "CREATE TABLE IF NOT EXISTS $session_table (`sess_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " . 
-                    "`id` VARCHAR(32) NOT NULL, `access` VARCHAR(100) NOT NULL, `data` LONGTEXT, UNIQUE KEY `id_UNIQUE` (`id`)) DEFAULT COLLATE = $collation DEFAULT CHARACTER SET = $charset";
+                    "`id` VARCHAR(255) NOT NULL, `access` VARCHAR(100) NOT NULL, `data` LONGTEXT, UNIQUE KEY `id_UNIQUE` (`id`)) DEFAULT COLLATE = $collation DEFAULT CHARACTER SET = $charset";
                 DB::getPdo()->query($sql);
 
                 $output->writeln("Session table $session_table created successfully.");

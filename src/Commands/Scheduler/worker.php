@@ -1,14 +1,11 @@
 <?php
 
-use Symfony\Component\Scheduler\Scheduler;
-use Clicalmani\Foundation\Scheduler\TaskDiscovery;
-
 $lockFile = sys_get_temp_dir() . '/tonka_scheduler_worker.lock';
 $fp = fopen($lockFile, 'w+');
 
 if (!flock($fp, LOCK_EX | LOCK_NB)) {
-    // Si le fichier est déjà verrouillé, on quitte immédiatement
-    logger()->error("Un worker est déjà en cours d'exécution.\n");
+    logger()->error("A scheduler worker is already running.");
+    exit(1);
 }
 
 $root = dirname(__DIR__, 6);
@@ -18,11 +15,73 @@ $app = require_once $root . '/bootstrap/app.php';
 $app->config->set('database', require_once config_path('/database.php'));
 $app->boot();
 
-$schedule          = container()->get('scheduler.main');
-$handlersDiscovery = container()->get('scheduler.handlers');
+// ── Schedule — retrieve all tasks ───────────────────────────────────────────
+$schedule = container()->get('scheduler.main');
+$bus      = container()->get('messenger');
 
-// Le Scheduler va vérifier les triggers et dispatcher les messages sur le bus
-$scheduler = new Scheduler($handlersDiscovery->discover(), [$schedule]);
+// ── SchedulerTransport — generates messages based on the cron expression ───
+// This component "ticks" and determines which messages to send depending on the time
+$scheduleProvider = new class($schedule) implements \Symfony\Component\Scheduler\ScheduleProviderInterface {
+    public function __construct(private \Symfony\Component\Scheduler\Schedule $schedule) {}
+    
+    public function getSchedule(): \Symfony\Component\Scheduler\Schedule
+    {
+        return $this->schedule;
+    }
+};
 
-// Boucle infinie qui surveille le temps
-$scheduler->run();
+$messageGenerator = new \Symfony\Component\Scheduler\Generator\MessageGenerator(
+    $scheduleProvider,
+    'scheduler.main',
+    new \Symfony\Component\Clock\NativeClock()
+);
+
+$schedulerTransport = new \Symfony\Component\Scheduler\Messenger\SchedulerTransport(
+    $messageGenerator
+);
+
+// Manual infinite loop
+while (true) {
+    // Retrieve messages whose cron matches the current time
+    $envelopes = $schedulerTransport->get();
+    
+    foreach ($envelopes as $envelope) {
+        logger()->info('📨 Scheduled message dispatched', [
+            'class' => get_class($envelope->getMessage()),
+        ]);
+
+        try {
+            // Remove ReceivedStamp if it exists so that SendMessageMiddleware
+            // agrees to route the message to ElegantTransport
+            $envelope = $envelope
+                ->withoutAll(\Symfony\Component\Messenger\Stamp\ReceivedStamp::class)
+                ->withoutAll(\Symfony\Component\Messenger\Stamp\ConsumedByWorkerStamp::class);
+
+            $bus->dispatch($envelope);
+
+        } catch (\Throwable $e) {
+            logger()->error('❌ Scheduled dispatch error', [
+                'class' => get_class($envelope->getMessage()),
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        $schedulerTransport->ack($envelope);
+    }
+
+    unset($envelopes, $envelope);
+    gc_collect_cycles();
+
+    // Check for the restart signal
+    if (file_exists(root_path('temp/restart_scheduler.txt'))) {
+        unlink(root_path('temp/restart_scheduler.txt'));
+        logger()->info("Restart signal received — stopping the scheduler.");
+        break;
+    }
+
+    // Wait before the next tick — 1 second is enough for 1-minute precision
+    sleep(1);
+}
+
+flock($fp, LOCK_UN);
+fclose($fp);

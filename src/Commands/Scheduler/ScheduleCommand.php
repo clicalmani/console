@@ -10,8 +10,7 @@ use Symfony\Component\Scheduler\Scheduler;
 
 /**
  * Schedule
- * 
- * @package Clicalmani\Console
+ * * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
@@ -30,43 +29,43 @@ class ScheduleCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        // Avant de relancer la crontab, on nettoie les anciens fichiers de lock
+        // Before running the crontab again, clean up old lock files
         $lockFile = sys_get_temp_dir() . '/tonka_scheduler_worker.lock';
 
         if (file_exists($lockFile)) {
             unlink($lockFile);
         }
 
-        // Récupération sécurisée du crontab actuel
+        // Securely retrieve the current crontab
         $currentCrontab = shell_exec('crontab -l 2>/dev/null') ?: '';
         
-        // Définition de la ligne à ajouter
-        $phpBinary   = PHP_BINARY; // Récupère dynamiquement le binaire PHP actuel
+        // Define the line to be added
+        $phpBinary   = PHP_BINARY; // Dynamically retrieves the current PHP binary path
         $taskScript  = __DIR__ . "/worker.php";
         $redirect = '> /dev/null 2>&1';
 
         $commandLine = "* * * * * $phpBinary $taskScript $redirect";
 
-        // Vérification de l'existence pour éviter les doublons
+        // Check for existence to prevent duplicates
         if (strpos($currentCrontab, $taskScript) !== false) {
-            $output->writeln('<info>Le scheduler est déjà configuré dans la crontab.</info>');
+            $output->writeln('<info>The scheduler is already configured in the crontab.</info>');
             return Command::SUCCESS;
         }
 
-        // Création d'un fichier temporaire sécurisé
+        // Create a secure temporary file
         $tmpFile = tempnam(sys_get_temp_dir(), 'cron');
         file_put_contents($tmpFile, $currentCrontab . $commandLine . PHP_EOL);
 
-        // Installation de la nouvelle crontab
+        // Install the new crontab
         exec("crontab $tmpFile", $out, $resultCode);
-        unlink($tmpFile); // Nettoyage
+        unlink($tmpFile); // Clean up
 
         if ($resultCode === 0) {
-            $output->writeln('<info>Scheduler installé avec succès.</info>');
+            $output->writeln('<info>Scheduler successfully installed.</info>');
             return Command::SUCCESS;
         }
 
-        $output->writeln('<error>Erreur lors de l\'installation de la crontab.</error>');
+        $output->writeln('<error>Error installing the crontab.</error>');
         return Command::FAILURE;
     }
 }

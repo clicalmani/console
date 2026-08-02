@@ -10,8 +10,7 @@ use Symfony\Component\Scheduler\Scheduler;
 
 /**
  * Consume
- * 
- * @package Clicalmani\Console
+ * * @package Clicalmani\Console
  * @author clicalmani
  */
 #[AsCommand(
@@ -29,29 +28,29 @@ class ConsumeCommand extends Command
     }
 
     /**
-     * Définition des options disponibles
+     * Define available options
      */
     protected function configure(): void
     {
         parent::configure();
         
-        $this->addOption('transport', 't', InputOption::VALUE_REQUIRED, 'The transport to be used', 'elegant');
+        $this->addOption('transport', 't', InputOption::VALUE_REQUIRED, 'The transports to be used', 'elegant');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        // Avant de relancer la crontab, on nettoie les anciens fichiers de lock
+        // Before restarting the crontab, clean up old lock files
         $lockFile = sys_get_temp_dir() . '/tonka_messenger_worker.lock';
 
         if (file_exists($lockFile)) {
             unlink($lockFile);
         }
 
-        // Récupération sécurisée du crontab actuel
+        // Safely retrieve the current crontab
         $currentCrontab = shell_exec('crontab -l 2>/dev/null') ?: '';
         
-        // Définition de la ligne à ajouter
-        $phpBinary   = PHP_BINARY; // Récupère dynamiquement le binaire PHP actuel
+        // Define the line to be added
+        $phpBinary   = PHP_BINARY; // Dynamically retrieves the current PHP binary
         $taskScript  = __DIR__ . "/worker.php";
 
         $transport = $input->getOption('transport');
@@ -62,29 +61,29 @@ class ConsumeCommand extends Command
 
         $commandLine = "* * * * * $phpBinary $taskScript $optionsString $redirect";
 
-        // --- GESTION DES DOUBLONS AMÉLIORÉE ---
-        // Si on relance la commande avec des options différentes, il faut supprimer l'ancienne ligne
-        // sinon le strpos bloquera l'ajout.
+        // --- IMPROVED DUPLICATE MANAGEMENT ---
+        // If the command is re-run with different options, the old line must be removed;
+        // otherwise, strpos would prevent the new line from being added.
         if (strpos($currentCrontab, $taskScript) !== false) {
-            // On supprime l'ancienne ligne contenant worker.php avant d'ajouter la nouvelle
+            // Remove the old line containing worker.php before adding the new one
             $currentCrontab = preg_replace('/^[^\r\n]*' . preg_quote($taskScript, '/') . '[^\r\n]*\r?\n?/m', '', $currentCrontab);
-            $output->writeln('<comment>Mise à jour de la configuration du consumer...</comment>');
+            $output->writeln('<comment>Updating consumer configuration...</comment>');
         }
 
-        // Création d'un fichier temporaire sécurisé
+        // Create a secure temporary file
         $tmpFile = tempnam(sys_get_temp_dir(), 'cron');
         file_put_contents($tmpFile, $currentCrontab . $commandLine . PHP_EOL);
 
-        // Installation de la nouvelle crontab
+        // Install the new crontab
         exec("crontab $tmpFile", $out, $resultCode);
-        unlink($tmpFile); // Nettoyage
+        unlink($tmpFile); // Cleanup
 
         if ($resultCode === 0) {
-            $output->writeln('<info>Consumer installé avec succès.</info>');
+            $output->writeln('<info>Consumer successfully installed.</info>');
             return Command::SUCCESS;
         }
 
-        $output->writeln('<error>Erreur lors de l\'installation de la crontab.</error>');
+        $output->writeln('<error>An error occurred while installing the crontab.</error>');
         return Command::FAILURE;
     }
 }

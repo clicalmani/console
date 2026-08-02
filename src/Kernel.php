@@ -25,6 +25,7 @@ class Kernel
       \Clicalmani\Console\Commands\Makes\MakeHelperCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEventCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEventListener::class,
+      \Clicalmani\Console\Commands\Makes\MakeEventSubscriberCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeCommandCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeValidatorCommand::class,
       \Clicalmani\Console\Commands\Makes\MakeEntityCommand::class,
@@ -38,6 +39,8 @@ class Kernel
       \Clicalmani\Console\Commands\Routines\RoutineViewCommand::class,
       \Clicalmani\Console\Commands\Messenger\ConsumeCommand::class,
       \Clicalmani\Console\Commands\Messenger\KillCommand::class,
+      \Clicalmani\Console\Commands\Messenger\FailedRetryCommand::class,
+      \Clicalmani\Console\Commands\Messenger\FailedShowCommand::class,
       \Clicalmani\Console\Commands\Scheduler\ScheduleCommand::class,
       \Clicalmani\Console\Commands\Scheduler\KillCommand::class,
    ];
