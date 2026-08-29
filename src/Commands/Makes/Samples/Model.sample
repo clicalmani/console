@@ -10,7 +10,7 @@ class $model_name extends Model
      *
      * @var string \$table Table name
      */
-    protected \$table = "$table_name";
+    protected string \$table = "$table_name";
 
     /**
      * Model entity
@@ -25,7 +25,7 @@ class $model_name extends Model
      *
      * @var string|array \$primary_keys Table primary key.
      */
-    protected \$primaryKey = $primary_keys;
+    protected string|array \$primaryKey = $primary_keys;
 
     /**
      * Constructor 
