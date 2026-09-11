@@ -11,7 +11,14 @@ class Application extends \Symfony\Component\Console\Application
     public function make()
     {
         foreach ($this->app->commands() as $command) {
-            $this->add(new $command($this->app->config['paths']['root']));
+            $this->add(new $command($this->app->rootPath()));
+        }
+    }
+
+    public function test(): void
+    {
+        foreach (\Clicalmani\Console\Test\Kernel::$kernel as $command) {
+            $this->add(new $command($this->app->rootPath()));
         }
     }
 }
