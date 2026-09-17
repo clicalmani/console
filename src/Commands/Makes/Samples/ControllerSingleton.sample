@@ -1,18 +1,18 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller;
-use Clicalmani\Foundation\Http\RequestInterface;
-use \Clicalmani\Foundation\Resources\ViewInterface;
+use Clicalmani\Core\Acme\Controller;
+use Clicalmani\Core\Http\RequestInterface;
+use \Clicalmani\Core\Resources\ViewInterface;
 
 class $controller extends Controller
 {
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function show(RequestInterface \$request, int \$id) : ViewInterface
     {
@@ -24,9 +24,9 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function edit(RequestInterface \$request, int \$id) : ViewInterface
     {
@@ -38,9 +38,9 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param  int \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function update(RequestInterface \$request, int \$id) : ViewInterface
     {

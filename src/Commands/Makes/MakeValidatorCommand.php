@@ -2,12 +2,12 @@
 namespace Clicalmani\Console\Commands\Makes;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Foundation\Providers\ValidationServiceProvider;
+use Clicalmani\Core\Providers\ValidationServiceProvider;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Clicalmani\Foundation\Sandbox\Sandbox;
+use Clicalmani\Core\Sandbox\Sandbox;
 use Clicalmani\Validation\Validator;
 use Symfony\Component\Console\Input\InputOption;
 

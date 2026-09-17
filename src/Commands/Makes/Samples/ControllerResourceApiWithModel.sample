@@ -1,8 +1,8 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller;
-use Clicalmani\Foundation\Http\RequestInterface;
+use Clicalmani\Core\Acme\Controller;
+use Clicalmani\Core\Http\RequestInterface;
 use $model_class;
 
 class $controller extends Controller
@@ -10,7 +10,7 @@ class $controller extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function index() 
     {
@@ -21,7 +21,7 @@ class $controller extends Controller
      * Store a newly created resource in storage.
      *
      * @param \\$model_class $$parameter
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function store($resource $$parameter) 
     {
@@ -33,7 +33,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function show($resource $$parameter, int \$id) 
     {
@@ -45,7 +45,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function update($resource $$parameter, int \$id) 
     {
@@ -57,7 +57,7 @@ class $controller extends Controller
      *
      * @param \\$model_class $$parameter
      * @param int \$id 
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function destroy($resource $$parameter, int \$id) 
     {

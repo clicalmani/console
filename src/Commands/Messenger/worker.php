@@ -72,7 +72,7 @@ if (class_exists(\Symfony\Component\Messenger\EventListener\StopWorkerOnSignalsL
     $dispatcher->addSubscriber(new \Symfony\Component\Messenger\EventListener\StopWorkerOnSigtermSigintListener());
 }
 
-$retryStrategyLocator = new \Clicalmani\Foundation\Messenger\RetryStrategyManager(config('messenger.retry_strategy'));
+$retryStrategyLocator = new \Clicalmani\Core\Messenger\RetryStrategyManager(config('messenger.retry_strategy'));
 $retryTransportsLocator = new class implements \Psr\Container\ContainerInterface {
     public function has(string $id): bool { return true; }
     public function get(string $id): mixed { return container()->get('messenger.transport.' . $id); }
@@ -142,7 +142,7 @@ $dispatcher->addListener(
 
             // ← Signals reject() that a retry is currently in progress
             // by modifying the envelope that the Worker will pass to reject()
-            $event->addStamps(new \Clicalmani\Foundation\Messenger\Stamp\RetryingStamp($nextRetry));
+            $event->addStamps(new \Clicalmani\Core\Messenger\Stamp\RetryingStamp($nextRetry));
 
             // Marks the event as "handled" — prevents Messenger from 
             // re-dispatching the message immediately and creating duplicates
@@ -186,7 +186,7 @@ $dispatcher->addSubscriber(
 $subscribersDir = root_path('app/EventSubscribers'); 
 $baseNamespace  = 'App\\EventSubscribers';
 
-$subscribers = \Clicalmani\Foundation\Messenger\SubscriberDiscovery::discover($subscribersDir, $baseNamespace);
+$subscribers = \Clicalmani\Core\Messenger\SubscriberDiscovery::discover($subscribersDir, $baseNamespace);
 
 foreach ($subscribers as $subscriber) {
     $dispatcher->addSubscriber($subscriber);

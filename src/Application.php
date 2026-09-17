@@ -3,7 +3,7 @@ namespace Clicalmani\Console;
 
 class Application extends \Symfony\Component\Console\Application
 {
-    public function __construct(private \Clicalmani\Foundation\Maker\Application $app)
+    public function __construct(private \Clicalmani\Core\Maker\Application $app)
     {
         parent::__construct();
     }

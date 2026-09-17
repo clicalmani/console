@@ -1,7 +1,7 @@
 <?php
 namespace Clicalmani\Console\Logic;
 
-use Clicalmani\Foundation\Sandbox\Sandbox;
+use Clicalmani\Core\Sandbox\Sandbox;
 
 /**
  * This file is part of the tonka project.

@@ -1,18 +1,18 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller;
-use Clicalmani\Foundation\Http\RequestInterface;
-use \Clicalmani\Foundation\Resources\ViewInterface;
+use Clicalmani\Core\Acme\Controller;
+use Clicalmani\Core\Http\RequestInterface;
+use \Clicalmani\Core\Resources\ViewInterface;
 
 class $controller extends Controller
 {
     /**
      * Handle the incoming RequestInterface;.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param  int  \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function __invoke(RequestInterface \$request, int \$id) : ViewInterface
     {

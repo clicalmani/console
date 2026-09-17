@@ -2,7 +2,7 @@
 namespace Clicalmani\Console\Commands\Local;
 
 use Clicalmani\Console\Commands\Command;
-use Clicalmani\Foundation\Support\Facades\DB;
+use Clicalmani\Core\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

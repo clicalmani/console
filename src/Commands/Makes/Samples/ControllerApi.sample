@@ -1,15 +1,15 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller;
-use Clicalmani\Foundation\Http\RequestInterface;
+use Clicalmani\Core\Acme\Controller;
+use Clicalmani\Core\Http\RequestInterface;
 
 class $controller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function index() 
     {
@@ -19,8 +19,8 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function store(RequestInterface \$request) 
     {
@@ -30,9 +30,9 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function show(RequestInterface \$request, int \$id) 
     {
@@ -42,9 +42,9 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function update(RequestInterface \$request, int \$id) 
     {
@@ -54,9 +54,9 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Http\Response\JsonResponseInterface
+     * @return \Clicalmani\Core\Http\Response\JsonResponseInterface
      */
     public function destroy(RequestInterface \$request, int \$id) 
     {

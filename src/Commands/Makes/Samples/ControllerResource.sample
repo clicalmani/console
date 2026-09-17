@@ -1,17 +1,17 @@
 <?php 
 namespace $namespace;
 
-use Clicalmani\Foundation\Acme\Controller;
-use Clicalmani\Foundation\Http\RequestInterface;
-use \Clicalmani\Foundation\Resources\ViewInterface;
-use \Clicalmani\Foundation\Http\RedirectInterface;
+use Clicalmani\Core\Acme\Controller;
+use Clicalmani\Core\Http\RequestInterface;
+use \Clicalmani\Core\Resources\ViewInterface;
+use \Clicalmani\Core\Http\RedirectInterface;
 
 class $controller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function index() : ViewInterface
     {
@@ -23,8 +23,8 @@ class $controller extends Controller
     /**
      * Create the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function create() : ViewInterface
     {
@@ -36,8 +36,8 @@ class $controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function store(RequestInterface \$request)
     {
@@ -47,9 +47,9 @@ class $controller extends Controller
     /**
      * Show the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function show(RequestInterface \$request, int \$id) : ViewInterface
     {
@@ -61,9 +61,9 @@ class $controller extends Controller
     /**
      * Edit the specified resource.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id
-     * @return \Clicalmani\Foundation\Resources\ViewInterface
+     * @return \Clicalmani\Core\Resources\ViewInterface
      */
     public function edit(RequestInterface \$request, int \$id) : ViewInterface
     {
@@ -75,9 +75,9 @@ class $controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param  int \$id
-     * @return \Clicalmani\Foundation\Http\RedirectInterface
+     * @return \Clicalmani\Core\Http\RedirectInterface
      */
     public function update(RequestInterface \$request, int \$id) : RedirectInterface
     {
@@ -87,9 +87,9 @@ class $controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Clicalmani\Foundation\Http\RequestInterface  \$request
+     * @param  \Clicalmani\Core\Http\RequestInterface  \$request
      * @param int \$id 
-     * @return \Clicalmani\Foundation\Http\RedirectInterface
+     * @return \Clicalmani\Core\Http\RedirectInterface
      */
     public function destroy(RequestInterface \$request, int \$id) : RedirectInterface
     {
