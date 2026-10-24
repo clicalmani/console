@@ -1,0 +1,7 @@
+<?php
+namespace App\Events;
+
+class $event
+{
+    // Logic of your code
+}

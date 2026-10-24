@@ -1,0 +1,25 @@
+<?php
+namespace App\Broadcasting;
+
+use Broadcaster\Event\ShouldBroadcastInterface;
+
+class $event implements ShouldBroadcastInterface
+{
+    /**
+     * Create a new event instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Get the topics the event should broadcast on.
+     *
+     * @return array
+     */
+    public function broadcastOn()
+    {
+        return [];
+    }
+}

@@ -1,0 +1,7 @@
+<?php 
+namespace App\Messages;
+
+class $message
+{
+    // Code logic
+}

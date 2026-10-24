@@ -1,0 +1,22 @@
+<?php
+namespace App\Notifications;
+
+use Clicalmani\Database\Notifications\NotificationInterface;
+use Broadcaster\Event\ShouldBroadcastInterface;
+
+class $className implements NotificationInterface, ShouldBroadcastInterface
+{
+    public function via() : array
+    {
+        return [
+            // Channels
+        ];
+    }
+
+    public function broadcastOn(): array
+    {
+        return [
+            // Topics
+        ];
+    }
+}

@@ -1,0 +1,12 @@
+<?php
+namespace App\Notifications;
+
+class $className implements \Clicalmani\Database\Notifications\NotificationInterface
+{
+    public function via() : array
+    {
+        return [
+            // Channels
+        ];
+    }
+}

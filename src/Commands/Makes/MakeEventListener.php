@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputOption;
  * @author clicalmani
  */
 #[AsCommand(
-    name: 'event:listener',
+    name: 'make:event-listener',
     description: 'Create an event listener class.',
     hidden: false
 )]
@@ -43,14 +43,14 @@ class MakeEventListener extends Command
             $filename, 
             ltrim( 
                 Sandbox::eval(file_get_contents( __DIR__ . "/Samples/EventListener.sample"), [
-                    'class'      => $name,
+                    'class'      => basename($name),
                     'eventClass' => $event
                 ])
             )
         );
 
         if ($success) {
-            $output->writeln('Command executed successfully');
+            $output->writeln('<info>Listener created successfully</info>');
             return Command::SUCCESS;
         }
 
@@ -63,8 +63,8 @@ class MakeEventListener extends Command
     {
         $this->setHelp('Create a custom command');
         $this->setDefinition([
-            new InputArgument('name', InputArgument::REQUIRED, 'Listener class name'),
-            new InputArgument('event', InputArgument::REQUIRED, 'Event class')
+            new InputArgument('name', InputArgument::REQUIRED, 'Listener name'),
+            new InputArgument('event', InputArgument::REQUIRED, 'Event name')
         ]);
     }
 }

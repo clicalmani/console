@@ -1,0 +1,25 @@
+<?php
+namespace App\Mail;
+
+use Clicalmani\Core\Mail\Mailable;
+
+class $className extends Mailable
+{
+    public function __construct(
+        private string \$name,
+        private string \$email
+    ) {}
+
+    public function build(): self
+    {
+        return \$this
+            ->from('noreply@tonka.app', 'Tonka App')
+            ->subject('Welcome to Tonka!')
+            ->view('emails.welcome')
+            ->with([
+                'name' => \$this->name,
+                'email' => \$this->email,
+                'app_name' => config('app.name')
+            ]);
+    }
+}

@@ -1,0 +1,9 @@
+namespace App\Handlers;
+
+class $handlerClass
+{
+    public function __invoke($messageClass \$message) : void
+    {
+        // Code logic
+    }
+}
