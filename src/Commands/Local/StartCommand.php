@@ -40,7 +40,7 @@ class StartCommand extends Command
 
         $host = $input->getOption('host');
         $port = $input->getOption('port');
-        $success = `php -S {$host}:{$port} server.php`;
+        $success = `php -d upload_max_filesize=64M -d post_max_size=64M -S {$host}:{$port} server.php`;
         
         if ($success) return Command::SUCCESS;
 
