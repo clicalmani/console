@@ -32,13 +32,14 @@ class MigrateCommand extends Command
         $default_connection = config('database.default');
         $message_table = config('messenger.message_table');
         $failed_table = config('messenger.failed_table');
-
+        
         if ($connections && $default_connection && $message_table && $failed_table) {
             $collation = $connections[$default_connection]['collation'];
             $charset = $connections[$default_connection]['charset'];
 
             try {
                 $message_table = env('DB_TABLE_PREFIX', '') . $message_table;
+                $failed_table = env('DB_TABLE_PREFIX', '') . $failed_table;
                 $messageSQL = <<<SQL
                 CREATE TABLE IF NOT EXISTS $message_table (
                     `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -62,7 +63,7 @@ class MigrateCommand extends Command
                     `failed_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 ) DEFAULT COLLATE = $collation DEFAULT CHARACTER SET = $charset;
                 SQL;
-                DB::getPdo()->exec($message_table . $failed_table);
+                DB::getPdo()->exec($messageSQL . $failedSQL);
 
                 $output->writeln("<info>Migration executed successfully.</info>");
 

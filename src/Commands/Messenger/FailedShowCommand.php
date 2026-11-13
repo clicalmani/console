@@ -2,8 +2,9 @@
 
 namespace Clicalmani\Console\Commands\Messenger;
 
-use App\Models\FailedMessage;
+use Carbon\Carbon;
 use Clicalmani\Console\Commands\Command;
+use Clicalmani\Core\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,8 +15,13 @@ use Symfony\Component\Console\Helper\Table;
     name: 'messenger:failed:show',
     description: 'List or view details of quarantined messages'
 )]
-class FailedShowCommand extends Command
+class FailedShowCommand extends FailedCommand
 {
+    public function __construct(protected $rootPath)
+    {
+        parent::__construct($rootPath);
+    }
+
     protected function configure(): void
     {
         parent::configure();
@@ -27,10 +33,10 @@ class FailedShowCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $id = $input->getArgument('id');
+        $message = DB::table($this->failedTable)->where('id = ?', [$id])->first();
 
         // ── CASE 1: MESSAGE DELETION (messenger:failed:remove) ─────────────────
         if ($id && $input->getOption('remove')) {
-            $message = FailedMessage::find($id);
             if (!$message) {
                 $output->writeln("<error>No message found with ID {$id}.</error>");
                 return Command::FAILURE;
@@ -42,7 +48,6 @@ class FailedShowCommand extends Command
 
         // ── CASE 2: VIEW DETAILS IN VERBOSE MODE (messenger:failed:show {id} --verbose) ──
         if ($id) {
-            $message = FailedMessage::find($id);
             if (!$message) {
                 $output->writeln("<error>No message found with ID {$id}.</error>");
                 return Command::FAILURE;
@@ -68,7 +73,7 @@ class FailedShowCommand extends Command
         }
 
         // ── CASE 3: LIST ALL MESSAGES (messenger:failed:show) ───────────────────
-        $messages = FailedMessage::all();
+        $messages = $message = DB::table($this->failedTable)->all();
 
         if (empty($messages)) {
             $output->writeln("<info>No messages in quarantine.</info>");
@@ -89,7 +94,7 @@ class FailedShowCommand extends Command
                 $msg->queue_name,
                 $msg->exception_class ?? 'Unknown',
                 $shortError,
-                $msg->failed_at->format('Y-m-d H:i')
+                Carbon::parse($msg->failed_at)->format('Y-m-d H:i')
             ]);
         }
 

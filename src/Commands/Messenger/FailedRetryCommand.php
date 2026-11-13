@@ -2,7 +2,7 @@
 
 namespace Clicalmani\Console\Commands\Messenger;
 
-use App\Models\FailedMessage;
+use Clicalmani\Core\Support\Facades\DB;
 use Clicalmani\Console\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,8 +14,13 @@ use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
     name: 'messenger:failed:retry',
     description: 'Retry one or all messages from quarantine'
 )]
-class FailedRetryCommand extends Command
+class FailedRetryCommand extends FailedCommand
 {
+    public function __construct(protected $rootPath)
+    {
+        parent::__construct($rootPath);
+    }
+
     protected function configure(): void
     {
         parent::configure();
@@ -31,14 +36,14 @@ class FailedRetryCommand extends Command
 
         // Determine the list of messages to process
         if ($id) {
-            $record = FailedMessage::find($id);
+            $record = DB::table($this->failedTable)->where('id = ?', [$id])->first();
             if (!$record) {
                 $output->writeln("<error>No message found with ID {$id}.</error>");
                 return Command::FAILURE;
             }
             $messages = [$record];
         } else {
-            $messages = FailedMessage::all();
+            $messages = DB::table($this->failedTable)->all();
             if (empty($messages)) {
                 $output->writeln("<info>No messages to retry in quarantine.</info>");
                 return Command::SUCCESS;
@@ -61,7 +66,7 @@ class FailedRetryCommand extends Command
                 $bus->dispatch($envelope->getMessage());
 
                 // 3. Delete the message from quarantine since it has been successfully re-sent
-                $msg->delete();
+                DB::table($this->failedTable)->where('id = ?', [$msg->id])->delete();
 
                 $output->writeln("<info>[OK]</info>");
                 $successCount++;
